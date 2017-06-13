@@ -1,0 +1,441 @@
+\documentclass[11pt]{article}
+\usepackage[cm]{fullpage}
+%%AVC PACKAGES
+\usepackage{avcgreek}
+\usepackage{avcfonts}
+\usepackage{avcmath}
+\usepackage[skip=9pt plus 2pt minus 7pt]{avcthm}
+\usepackage{qcmacros}
+\usepackage{goldstone}
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+
+
+\section*{The molecular Schr\"odinger equation}
+
+\begin{rmk}
+The non-relativistic point-charge Hamiltonian of a system of nuclei and electrons includes a kinetic energy operator for each particle and a Coulomb operator for each particle pair.\footnote{
+  For $\mr{x}=\mr{y}$ one must restrict the sum on the right to unique $i,j$ pairs in order to avoid double-counting.}
+\begin{align}
+  \op{H}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+=
+  \op{T}^\mr{e}
++
+  \op{T}^\mr{n}
++
+  V^\mr{e}(\bo{r}_\mr{e})
++
+  V^\mr{n}(\bo{r}_\mr{n})
++
+  V^{\mr{e},\mr{n}}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+&&
+  \op{T}^\mr{x}
+=
+  \fr{1}{2m_\mr{x}}
+  \sum
+  \op{\bo{p}}_{\mr{x},i}^2
+&&
+  V^{\mr{x},\mr{y}}(\bo{r}_\mr{x},\bo{r}_\mr{y})
+=
+  \fr{1}{4\pi \e_0}
+  \sum
+  \fr{
+    q_\mr{x}q_\mr{y}
+  }{
+    \|\bo{r}_{\mr{x},i} - \bo{r}_{\mr{y},j}\|^2
+  }
+\end{align}
+The state of this system is described by a wavefunction,
+$\Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n}, t)$, which is governed by the Schr\"odinger equation.
+\begin{align}
+  \op{H}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  \Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n}, t)
+=
+  i
+  \hbar
+  \pd{
+    \Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n}, t)
+  }{
+    t
+  }
+\end{align}
+In the absence of external fields the system exists in a \textit{stationary state}.
+Stationary states are characterized by a static wavefunction $\Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n})$ and a conserved energy expectation value $E_\a^\mr{tot}$ that controls its frequency of oscillation in time.
+These quantities are governed by Hamiltonian eigenvalue equation, which is the \textit{time-independent Schr\"odinger equation}.
+\begin{align}
+\label{eq:molecular-schrodinger-equation}
+  \op{H}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  \Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+=
+  E_\a^\mr{tot}
+  \Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+&&
+  \Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n}, t)
+=
+  \Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  e^{-\fr{i}{\hbar}E_\a^\mr{tot}\,t}
+\end{align}
+If $\mc{H}^\mr{e}\equiv\{\F_k(\bo{r}_\mr{e})\,|\,k\}$ is a complete basis of functions in $\bo{r}_\mr{e}$, the time-independent wavefunction can be expanded as follows.
+\begin{align}
+\label{eq:general-wavefunction-expansion}
+  \Y_\a^\mr{tot}(\bo{r}_\mr{e}, \bo{r}_\mr{n})
+=
+\ts{
+  \sum_{k'}
+  \F_{k'}(\bo{r}_\mr{e})\,
+  \x_{k',\a}(\bo{r}_\mr{n})
+}
+\end{align}
+Substituting this into equation~\ref{eq:molecular-schrodinger-equation} and integrating with $\F_k^*(\bo{r}_\mr{e})$ yields an equation for the unknown nuclear functions.
+\begin{align}
+\label{eq:general-nuclear-schrodinger-equation}
+  \op{\bo{H}}(\bo{r}_\mr{n})
+  \bm{\x}_\a(\bo{r}_\mr{n})
+=
+  E_\a^\mr{tot}
+  \bm{\x}_\a(\bo{r}_\mr{n})
+&&
+  \op{H}_{k,k'}(\bo{r}_\mr{n})
+\equiv
+  \int
+  d^{n_\mr{e}}\bo{r}_\mr{e}\,\,
+  \F_k^*(\bo{r}_\mr{e})
+  \op{H}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  \F_{k'}(\bo{r}_\mr{e})
+&&
+  \bm{\x}_\a(\bo{r}_\mr{n})
+=
+\ma{
+  \x_{0,\a}(\bo{r}_\mr{n})\\
+  \x_{1,\a}(\bo{r}_\mr{n})\\
+  \vdots
+}
+\end{align}
+This operator matrix equation can be solved by further expanding each entry in a basis for nuclear function space, yielding a supermatrix eigenvalue equation with scalar coefficients.
+Exact solution of this equation is computationally intractable because the electronic and nuclear function spaces are infinite-dimensional.
+In practice this can be resolved by ``coarse-graining'' each space with a finite subset of carefully chosen functions.
+\end{rmk}
+
+\begin{dfn}
+\thmtitle{The Born-Oppenheimer approximation}
+The \textit{Born-Oppenheimer approximation} decouples the electrons from the nuclei by neglecting the nuclear kinetic energy operator,
+$
+  \op{H}^\mr{bo}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+\equiv
+  \op{H}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+-
+  \op{T}^\mr{n}
+$,
+and treating nuclear attraction as a fixed external potential.
+The resulting \textit{electronic Schr\"odinger equation} has the form
+\begin{align}
+\label{eq:born-oppenheimer-equation}
+  \op{H}^\mr{bo}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+=
+  E_k^\mr{e}(\bo{r}_\mr{n})
+  \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+\end{align}
+which is a continuous series of eigenvalue equations parametrized by $\bo{r}_\mr{n}$.
+The index $k$ refers to the \textit{electronic state} of the molecule, which is a construct of the Born-Oppenheimer approximation.
+The \textit{noncrossing rule} says that these electronic energies form non-intersecting \textit{potential energy surfaces} over the space of nuclear coordinates, $\{E_k^\mr{e}(\bo{r}_\mr{n})\,|\,\bo{r}_\mr{n}\}$.\footnote{
+  More precisely, electronic states of a given spin and spatial symmetry do not intersect.
+}
+To construct a total molecular wavefunction, the Born-Oppenheimer approximation employs two simplifying assumptions.\footnote{
+  $[A, B]\equiv AB - BA$ is the commutator product.
+}
+\begin{align}
+\label{eq:born-oppenheimer-approximations}
+  \Y_\a^\mr{tot}
+\approx
+  \Y_{k\nu}^\mr{bo}
+\ \ \text{where} \ \ 
+  \Y_{k\nu}^\mr{bo}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+\equiv
+  \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  \x_{k,\nu}^\mr{bo}(\bo{r}_\mr{n})
+&&
+  [\op{T}^\mr{n}, \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})]
+\approx
+  0
+\end{align}
+Applying these to the exact Schr\"odinger equation yields a \textit{rovibrational Schr\"odinger equation} for the nuclear component.
+\begin{align}
+\label{eq:born-oppeheimer-nuclear-motion-equation}
+  (
+    \op{T}^\mr{n}
+  +
+    E_k^\mr{e}(\bo{r}_\mr{n})
+  )\,
+  \x_{k,\nu}^\mr{bo}(\bo{r}_\mr{n})
+=
+  E_{k,\nu}^\mr{bo}\,
+  \x_{k,\nu}^\mr{bo}(\bo{r}_\mr{n})
+\end{align}
+This scheme results in a good approximation to the wavefunction under the following two conditions:
+1.~The nuclear wavefunction $\x_{k,\nu}(\bo{r}_\mr{n})$ is localized to a region where the potential energy surface $E_k(\bo{r}_\mr{n})$ is well-separated from its neighboring surfaces;
+and 2.~The electronic wavefunction $\Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})$ is slowly varying in $\bo{r}_\mr{n}$ over that region.
+\end{dfn}
+
+\begin{rmk}
+\label{rmk:born-and-longuet-higgins-representations}
+The electronic Schr\"odinger equation can also be used as a stepping stone to the exact molecular wavefunction, circumventing the approximations of equation~\ref{eq:born-oppenheimer-approximations}.
+Namely, equation~\ref{eq:born-oppenheimer-equation} can be used to generate a convenient electronic basis for equations~\ref{eq:general-wavefunction-expansion}~and~\ref{eq:general-nuclear-schrodinger-equation}.
+The dependence of the electronic states on $\bo{r}_\mr{n}$ admits two sensible choices for $\mc{H}^\mr{e}$.
+\begin{align}
+  {}^\mr{I}\mc{H}^\mr{e}
+\equiv
+  \{
+    \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n}^\circ)
+  \,|\,
+    k
+  \}
+&&
+  {}^\mr{II}\mc{H}^\mr{e}
+\equiv
+  \{
+    \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  \,|\,
+    k
+  \}
+\end{align}
+Option I is the \textit{Longuet-Higgins representation}, which uses Born-Oppenheimer electronic states from fixed point on the potential surface.
+Option II is the \textit{Born representation}, which associates each set of nuclear coordinates with its own set of electronic functions.
+Both options approach the exact non-relativistic wavefunction in the limit of an infinite expansion, but the Born representation is more amenable to coarse-graining with a small number of functions.
+The Longuet-Higgins representation is appropriate when probability density of the nuclei is localized within a narrow region around $\bo{r}_\mr{n}^\circ$,
+as might be observed at a deep well on the potential surface.
+\end{rmk}
+
+\begin{samepage}
+\begin{rmk}
+To contrast the two alternatives in \cref{rmk:born-and-longuet-higgins-representations}, express the Hamiltonian as
+$
+  \op{H}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+=
+  \op{T}^\mr{n}
++
+  \op{H}^\mr{bo}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+$
+and consider its matrix elements for each set of electronic functions.
+\begin{align}
+  \op{\bo{H}}(\bo{r}_\mr{n})
+=
+  \op{\bo{T}}^\mr{n}
++
+  \bo{H}^{\mr{bo}}(\bo{r}_\mr{n})
+&&
+  H_{k,k'}^\mr{bo}(\bo{r}_\mr{n})
+\equiv
+  \int
+  d^{n_\mr{e}}\bo{r}_\mr{e}\,\,
+  \F_k^*(\bo{r}_\mr{e})\,
+  \op{H}^{\mr{bo}}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  \F_{k'}(\bo{r}_\mr{e})
+&&
+  \op{T}_{k,k'}^\mr{n}(\bo{r}_\mr{n})
+\equiv
+  \int
+  d^{n_\mr{e}}\bo{r}_\mr{e}\,\,
+  \F_k^*(\bo{r}_\mr{e})\,
+  \op{T}^\mr{n}\,
+  \F_{k'}(\bo{r}_\mr{e})
+\end{align}
+Assuming the electronic basis states are orthonormal,\footnote{As a Hermitian operator, the Born-Oppenheimer model Hamiltonian always possesses an orthonormal set of eigenstates.} the matrix elements of $\op{T}^\mr{n}$ can be written as follows.\footnote{
+Using
+$
+  \op{T}^\mr{n}\F_k(\bo{r}_\mr{n})
+=
+  \F_k(\bo{r}_\mr{n})\,\op{T}^\mr{n}
++
+  [\op{T}^\mr{n}, \F_k(\bo{r}_\mr{n})]
+$.
+}
+\begin{align}
+  \op{T}_{k,k'}^\mr{n}
+&=
+  \d_{kk'}
+  \op{T}^\mr{n}
++
+  \op{\La}_{k,k'}^\mr{n}
+&
+  \op{\La}_{k,k'}^\mr{n}
+&\equiv
+  \int
+  d^{n_\mr{e}}\bo{r}_\mr{e}\,\,
+  \F_k^*(\bo{r}_\mr{e})\,
+  [
+    \op{T}^\mr{n}
+  ,
+    \F_{k'}(\bo{r}_\mr{e})
+  ]
+\\
+  H_{k,k'}^\mr{bo}(\bo{r}_\mr{n})
+&=
+  \d_{kk'}
+  E_k^\mr{e}(\bo{r}_\mr{n})
++
+  \bar{H}_{k,k'}^\mr{bo}(\bo{r}_\mr{n})
+&
+  \bar{H}_{k,k'}^\mr{bo}(\bo{r}_\mr{n})
+&\equiv
+  \int
+  d^{n_\mr{e}}\bo{r}_\mr{e}\,\,
+  \F_k^*(\bo{r}_\mr{e})\,
+  (\op{H}^{\mr{bo}}(\bo{r}_\mr{e},\bo{r}_\mr{n}) - E_k^\mr{e}(\bo{r}_\mr{n}))
+  \F_{k'}(\bo{r}_\mr{e})
+\end{align}
+The structure of these matrices is characterized by the following relationships
+\begin{align}
+  [
+    \op{T}^\mr{n}
+  ,
+    \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n}^\circ)
+  ]
+=
+  0
+&&
+  (\op{H}^{\mr{bo}}(\bo{r}_\mr{e},\bo{r}_\mr{n}) - E_k^\mr{e}(\bo{r}_\mr{n}))
+  \Y_k(\bo{r}_\mr{e}, \bo{r}_\mr{n}^\circ)
+\neq
+  0
+\\
+  [
+    \op{T}^\mr{n}
+  ,
+    \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  ]
+\neq
+  0
+&&
+  (\op{H}^{\mr{bo}}(\bo{r}_\mr{e},\bo{r}_\mr{n}) - E_k^\mr{e}(\bo{r}_\mr{n}))
+  \Y_k(\bo{r}_\mr{e}, \bo{r}_\mr{n})
+=
+  0
+\end{align}
+which follow from equation~\ref{eq:born-oppenheimer-equation} and the fact that $\op{T}^\mr{n}$ is a differential operator in $\bo{r}_\mr{n}$.
+In words, this says that the Longuet-Higgins representation diagonalizes the nuclear kinetic energy operator, whereas the Born representation diagonalizes the Born-Oppenheimer potential.
+\end{rmk}
+\end{samepage}
+
+\begin{rmk}
+In the Longuet-Higgins representation, the nuclear motion problem is typically solved by expanding the Hamiltonian in a Taylor series at $\bo{r}_\mr{n}^\circ$, which can be expressed as follows.
+\begin{align}
+  {}^\mr{I}\op{\bo{H}}(\bo{r}_\mr{n})
+=
+  \op{T}^\mr{n}\,
+  \bo{1}
++
+  \bo{E}^\mr{e}(\bo{r}_\mr{n})
++
+  \tpd{
+    \bo{H}^\mr{bo}(\bo{r}_\mr{n}^\circ)
+  }{
+    \bo{r}_\mr{n}
+  }
+  \cdot
+  \d\bo{r}_\mr{n}
++
+  \tfr{1}{2}\,
+  \d\bo{r}_\mr{n}
+  \cdot
+  \tpd{
+    ^2\bo{H}^\mr{bo}(\bo{r}_\mr{n}^\circ)
+  }{
+    \bo{r}_\mr{n}
+    \pt
+    \bo{r}_\mr{n}
+  }
+  \cdot
+  \d\bo{r}_\mr{n}
++
+  \ld
+&&
+  \bo{E}^\mr{e}(\bo{r}_\mr{n})
+\equiv
+  \ma{
+    E_0^\mr{e}(\bo{r}_\mr{n}) & 0 & \cd \\
+    0 & E_1^\mr{e}(\bo{r}_\mr{n}) & \cd \\
+    \vd & \vd & \dd \\
+  }
+\end{align}
+This approach leads to the K\"oppel-Domcke-Cederbaum (KDC) approximation to the total molecular wavefunction.
+\end{rmk}
+
+\begin{rmk}
+The Born-representation Hamiltonian has the following structure.
+\begin{align}
+  {}^\mr{II}\op{\bo{H}}(\bo{r}_\mr{n})
+=
+  \op{T}^\mr{n}\,
+  \bo{1}
++
+  \op{\bm{\La}}^\mr{n}(\bo{r}_\mr{n})
++
+  \bo{E}^\mr{e}(\bo{r}_\mr{n})
+&&
+  \op{\La}_{k,k'}^\mr{n}(\bo{r}_\mr{n})
+=
+  \int
+  d^{n_\mr{e}}\bo{r}_\mr{e}\,\,
+  \Y_k^{\mr{e}*}(\bo{r}_\mr{e},\bo{r}_\mr{n})\,
+  [
+    \op{T}^\mr{n}
+  ,
+    \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  ]
+\end{align}
+Although this approach leads to a more compact wavefunction expansion, it is considerably more complicated to work with because the elements of the coupling matrix $\op{\bm{\La}}^\mr{n}$ involve derivatives of the electronic states with respect to $\bo{r}_\mr{n}$.
+\end{rmk}
+
+\begin{dfn}
+\thmtitle{The adiabatic approximation}
+Neglecting the off-diagonal of the coupling matrix elements in the Born representation leads to the \textit{adiabatic approximation}, which is equivalent to employing the Born-Oppenheimer separability assumption,
+$
+  \Y_{k,\nu}^\mr{ad}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+=
+  \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+  \x_{k,\nu}^\mr{ad}(\bo{r}_\mr{n})
+$,
+without the vanishing commutator approximation.
+The nuclear functions in the adiabatic approximation satisfy a set of conditions similar to equation~\ref{eq:born-oppeheimer-nuclear-motion-equation}.
+\begin{align}
+  (
+    \op{T}^\mr{n}
+  +
+    \op{\La}_{k,k}^\mr{n}(\bo{r}_\mr{n})
+  +
+    E_k^\mr{e}(\bo{r}_\mr{n})
+  )\,
+  \x_{k,\nu}^\mr{ad}(\bo{r}_\mr{n})
+=
+  E_{k,\nu}^\mr{ad}\,
+  \x_{k,\nu}^\mr{ad}(\bo{r}_\mr{n})
+\end{align}
+\end{dfn}
+
+\begin{dfn}
+\thmtitle{The diagonal Born-Oppenheimer approximation}
+First-order perturbation theory leads to an even simpler alternative to the adiabatic approximation, known as the \textit{diagonal Born-Oppenhimer correction}.
+\begin{align}
+  E_{k,\nu}^\mr{ad}
+\approx
+  E_{k,\nu}^\mr{bo}
++
+  \D_k^\mr{dboc}(\bo{r}_\mr{n})
+&&
+  \D_k^\mr{dboc}(\bo{r}_\mr{n})
+=
+  \int
+  d^{n_\mr{e}}\bo{r}_\mr{e}\,\,
+  \Y_k^{\mr{e}*}(\bo{r}_\mr{e},\bo{r}_\mr{n})\,
+  \op{T}^\mr{n}\,
+  \Y_k^\mr{e}(\bo{r}_\mr{e},\bo{r}_\mr{n})
+\end{align}
+\end{dfn}
+
+
+
+\end{document}
