@@ -17,7 +17,7 @@
 \section*{The molecular Schr\"odinger equation}
 
 \begin{rmk}
-The non-relativistic point-charge Hamiltonian of a system of nuclei and electrons includes a kinetic energy operator for each particle and a Coulomb operator for each particle pair.\footnote{
+The non-relativistic Hamiltonian of a system of nuclei and electrons includes a kinetic energy operator for each particle and a Coulomb operator for each particle pair.\footnote{
   For $\mr{x}=\mr{y}$ one must restrict the sum on the right to unique $i,j$ pairs in order to avoid double-counting.}
 \begin{align}
   \op{H}(\bo{r}_\mr{e},\bo{r}_\mr{n})
@@ -64,7 +64,7 @@ $\Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n}, t)$, which is governed by the Schr\
 \end{align}
 In the absence of external fields the system exists in a \textit{stationary state}.
 Stationary states are characterized by a static wavefunction $\Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n})$ and a conserved energy expectation value $E_\a^\mr{tot}$ that controls its frequency of oscillation in time.
-These quantities are governed by Hamiltonian eigenvalue equation, which is the \textit{time-independent Schr\"odinger equation}.
+These quantities are governed by a Hamiltonian eigenvalue equation, which is the \textit{time-independent Schr\"odinger equation}.
 \begin{align}
 \label{eq:molecular-schrodinger-equation}
   \op{H}(\bo{r}_\mr{e},\bo{r}_\mr{n})
@@ -144,9 +144,7 @@ The index $k$ refers to the \textit{electronic state} of the molecule, which is 
 The \textit{noncrossing rule} says that these electronic energies form non-intersecting \textit{potential energy surfaces} over the space of nuclear coordinates, $\{E_k^\mr{e}(\bo{r}_\mr{n})\,|\,\bo{r}_\mr{n}\}$.\footnote{
   More precisely, electronic states of a given spin and spatial symmetry do not intersect.
 }
-To construct a total molecular wavefunction, the Born-Oppenheimer approximation employs two simplifying assumptions.\footnote{
-  $[A, B]\equiv AB - BA$ is the commutator product.
-}
+To construct a total molecular wavefunction, the Born-Oppenheimer approximation employs two simplifying assumptions.
 \begin{align}
 \label{eq:born-oppenheimer-approximations}
   \Y_\a^\mr{tot}
@@ -202,10 +200,10 @@ The dependence of the electronic states on $\bo{r}_\mr{n}$ admits two sensible c
     k
   \}
 \end{align}
-Option I is the \textit{Longuet-Higgins representation}, which uses Born-Oppenheimer electronic states from fixed point on the potential surface.
+Option I is the \textit{Longuet-Higgins representation}, which uses Born-Oppenheimer electronic states from a fixed point on the potential surface.
 Option II is the \textit{Born representation}, which associates each set of nuclear coordinates with its own set of electronic functions.
 Both options approach the exact non-relativistic wavefunction in the limit of an infinite expansion, but the Born representation is more amenable to coarse-graining with a small number of functions.
-The Longuet-Higgins representation is appropriate when probability density of the nuclei is localized within a narrow region around $\bo{r}_\mr{n}^\circ$,
+The Longuet-Higgins representation is appropriate when the probability density of the nuclei is localized within a narrow region around $\bo{r}_\mr{n}^\circ$,
 as might be observed at a deep well on the potential surface.
 \end{rmk}
 
@@ -392,7 +390,7 @@ Although this approach leads to a more compact wavefunction expansion, it is con
 
 \begin{dfn}
 \thmtitle{The adiabatic approximation}
-Neglecting the off-diagonal of the coupling matrix elements in the Born representation leads to the \textit{adiabatic approximation}, which is equivalent to employing the Born-Oppenheimer separability assumption,
+Neglecting the off-diagonal elements of the coupling matrix in the Born representation leads to the \textit{adiabatic approximation}, which is equivalent to employing the Born-Oppenheimer separability assumption,
 $
   \Y_{k,\nu}^\mr{ad}(\bo{r}_\mr{e},\bo{r}_\mr{n})
 =
