@@ -63,7 +63,7 @@ $\Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n}, t)$, which is governed by the Schr\
   }
 \end{align}
 In the absence of external fields the system exists in a \textit{stationary state}.
-Stationary states are characterized by a static wavefunction $\Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n})$ and a conserved energy expectation value $E_\a^\mr{tot}$ that controls its frequency of oscillation in time.
+Stationary states are characterized by a static wavefunction $\Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n})$ with a conserved energy expectation value $E_\a^\mr{tot}$ that controls its frequency of oscillation in time.
 These quantities are governed by a Hamiltonian eigenvalue equation, which is the \textit{time-independent Schr\"odinger equation}.
 \begin{align}
 \label{eq:molecular-schrodinger-equation}
@@ -78,7 +78,18 @@ These quantities are governed by a Hamiltonian eigenvalue equation, which is the
   \Y_\a^\mr{tot}(\bo{r}_\mr{e},\bo{r}_\mr{n})
   e^{-\fr{i}{\hbar}E_\a^\mr{tot}\,t}
 \end{align}
-If $\mc{H}^\mr{e}\equiv\{\F_k(\bo{r}_\mr{e})\,|\,k\}$ is a complete basis of functions in $\bo{r}_\mr{e}$, the time-independent wavefunction can be expanded as follows.
+If $\mc{H}^\mr{e}\equiv\{\F_k(\bo{r}_\mr{e})\,|\,k\}$ is a complete basis of functions in $\bo{r}_\mr{e}$, the time-independent wavefunction can be expanded as follows.\footnotemark
+\footnote{
+  By resolution of the identity, the nuclear functions can be identified as
+$
+  \x_{k,\a}(\bo{r}_\mr{n})
+=
+  \int
+  d^{n_\mr{e}}\bo{r}_\mr{e}\,\,
+  \F_k^*(\bo{r}_\mr{e})
+  \Y_\a^\mr{tot}(\bo{r}_\mr{e}, \bo{r}_\mr{n})
+$.
+}
 \begin{align}
 \label{eq:general-wavefunction-expansion}
   \Y_\a^\mr{tot}(\bo{r}_\mr{e}, \bo{r}_\mr{n})
