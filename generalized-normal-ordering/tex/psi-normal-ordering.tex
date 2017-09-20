@@ -546,8 +546,7 @@ $
   \g(q_{i_1}q_{i_2})
 =
   \la(q_{i_1}q_{i_2})
-$
-by \Cref{moment-cumulant-meeting}.
+$.
 Now, assume it holds for all contractions up to $n$ and consider $\fullctr{Q}$ for $Q$ of length $n$.
 By \Cref{psi-expectation-partitions}, we have
 \begin{align*}
@@ -847,6 +846,30 @@ which, on plugging in $k!T_k^{\logbox}=(-)^{k+1}(k-1)!$ and $k!T_k^{\expbox}=1$,
 \end{align*}
 \end{addmargin}
 \end{pro}
+
+
+
+\section{Wick's theorem}
+
+
+\begin{thm}
+\label{wick-thm}
+\bmit{Wick's Theorem, $Q=\NO{Q}+\NO{\ol{Q}}$ (time-independent).}
+\textit{Any string $Q$ of particle-hole operators is equal to $\NO{Q}+\NO{\ol{Q}}$, its normal-ordered form plus the sum of all possible contractions.}
+\end{thm}
+
+\begin{cor}
+\label{wick-product}
+\bmit{Wick's Theorem for operator products.}
+\textit{
+Given a pair $Q, Q'$ of particle-hole operator strings already in normal order, the product of their normal orderings is given by $\NO{Q}\NO{Q'}=\NO{QQ'}+\NO{\ctr{}{Q}{}{Q}{'}QQ'}$.}
+\end{cor}
+
+\begin{cor}
+\label{wick-vacuum-expectation}
+\bmit{$\ip{\vac|Q|\vac}=\NO{\ol{\ol{Q}}}$.}
+\textit{The vacuum expectation value of a string of particle-hole operators equals the sum of its complete contractions.}
+\end{cor}
 
 
 \end{document}
