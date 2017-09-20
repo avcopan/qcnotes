@@ -1,0 +1,1027 @@
+\documentclass[11pt,fleqn]{article}
+\usepackage[cm]{fullpage}
+\usepackage{mathtools} %includes amsmath
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{xfrac}
+\usepackage{url}
+%greek letters
+\renewcommand{\a}{\alpha}    %alpha
+\renewcommand{\b}{\beta}     %beta
+\newcommand{\g}{\gamma}      %gamma
+\newcommand{\G}{\Gamma}      %Gamma
+\renewcommand{\d}{\delta}    %delta
+\newcommand{\D}{\Delta}      %Delta
+\newcommand{\e}{\varepsilon} %epsilon
+\newcommand{\ev}{\epsilon}   %epsilon*
+\newcommand{\z}{\zeta}       %zeta
+\newcommand{\h}{\eta}        %eta
+\renewcommand{\th}{\theta}   %theta
+\newcommand{\Th}{\Theta}     %Theta
+\newcommand{\io}{\iota}      %iota
+\renewcommand{\k}{\kappa}    %kappa
+\newcommand{\la}{\lambda}    %lambda
+\newcommand{\La}{\Lambda}    %Lambda
+\newcommand{\m}{\mu}         %mu
+\newcommand{\n}{\nu}         %nu %xi %Xi %pi %Pi
+\newcommand{\p}{\rho}        %rho
+\newcommand{\si}{\sigma}     %sigma
+\newcommand{\siv}{\varsigma} %sigma*
+\newcommand{\Si}{\Sigma}     %Sigma
+\renewcommand{\t}{\tau}      %tau
+\newcommand{\up}{\upsilon}   %upsilon
+\newcommand{\f}{\phi}        %phi
+\newcommand{\F}{\Phi}        %Phi
+\newcommand{\x}{\chi}        %chi
+\newcommand{\y}{\psi}        %psi
+\newcommand{\Y}{\Psi}        %Psi
+\newcommand{\w}{\omega}      %omega
+\newcommand{\W}{\Omega}      %Omega
+%ornaments
+\newcommand{\eth}{\ensuremath{^\text{th}}}
+\newcommand{\rst}{\ensuremath{^\text{st}}}
+\newcommand{\ond}{\ensuremath{^\text{nd}}}
+\newcommand{\ord}[1]{\ensuremath{^{(#1)}}}
+\newcommand{\dg}{\ensuremath{^\dagger}}
+\newcommand{\bigo}{\ensuremath{\mathcal{O}}}
+\newcommand{\tl}{\ensuremath{\tilde}}
+\newcommand{\ol}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\ul}[1]{\ensuremath{\underline{#1}}}
+\newcommand{\op}[1]{\ensuremath{\hat{#1}}}
+\newcommand{\ot}{\ensuremath{\otimes}}
+\newcommand{\wg}{\ensuremath{\wedge}}
+%text
+\newcommand{\tr}{\ensuremath{\hspace{1pt}\mathrm{tr}\hspace{1pt}}}
+\newcommand{\Alt}{\ensuremath{\mathrm{Alt}}}
+\newcommand{\sgn}{\ensuremath{\mathrm{sgn}}}
+\newcommand{\occ}{\ensuremath{\mathrm{occ}}}
+\newcommand{\vir}{\ensuremath{\mathrm{vir}}}
+\newcommand{\spn}{\ensuremath{\mathrm{span}}}
+\newcommand{\vac}{\ensuremath{\mathrm{vac}}}
+\newcommand{\bs}{\ensuremath{\text{\textbackslash}}}
+\newcommand{\im}{\ensuremath{\mathrm{im}\hspace{1pt}}}
+\renewcommand{\sp}{\hspace{30pt}}
+%dots
+\newcommand{\ld}{\ensuremath{\ldots}}
+\newcommand{\cd}{\ensuremath{\cdots}}
+\newcommand{\vd}{\ensuremath{\vdots}}
+\newcommand{\dd}{\ensuremath{\ddots}}
+\newcommand{\etc}{\ensuremath{\mathinner{\mkern-1mu\cdotp\mkern-2mu\cdotp\mkern-2mu\cdotp\mkern-1mu}}}
+%fonts
+\newcommand{\bmit}[1]{{\bfseries\itshape\mathversion{bold}#1}}
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\mb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\mf}[1]{\ensuremath{\mathfrak{#1}}}
+\newcommand{\mr}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\bo}[1]{\ensuremath{\mathbf{#1}}}
+%styles
+\newcommand{\ts}{\textstyle}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\phsub}{\ensuremath{_{\phantom{p}}}}
+\newcommand{\phsup}{\ensuremath{^{\phantom{p}}}}
+%fractions, derivatives, parentheses, brackets, etc.
+\newcommand{\pr}[1]{\ensuremath{\left(#1\right)}}
+\newcommand{\brk}[1]{\ensuremath{\left[#1\right]}}
+\newcommand{\fr}[2]{\ensuremath{\dfrac{#1}{#2}}}
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial#1}{\partial#2}}}
+\newcommand{\pt}{\ensuremath{\partial}}
+\newcommand{\br}[1]{\ensuremath{\langle#1|}}
+\newcommand{\kt}[1]{\ensuremath{|#1\rangle}}
+\newcommand{\ip}[1]{\ensuremath{\langle#1\rangle}}
+\newcommand{\NO}[1]{\ensuremath{{\bm{:}}#1{}{\bm{:}}}}
+\newcommand{\floor}[1]{\ensuremath{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{\ensuremath{\left\lceil#1\right\rceil}}
+\usepackage{stackengine}
+\newcommand{\GNO}[1]{\setstackgap{S}{0.7pt}\ensuremath{\Shortstack{\textbf{.} \textbf{.} \textbf{.}}#1\Shortstack{\textbf{.} \textbf{.} \textbf{.}}}}
+\newcommand{\cmtr}[2]{\ensuremath{[\cdot,#2]^{#1}}}
+\newcommand{\cmtl}[2]{\ensuremath{[#2,\cdot]^{#1}}}
+%structures
+\newcommand{\eqn}[1]{(\ref{#1})}
+\newcommand{\ma}[1]{\ensuremath{\begin{bmatrix}#1\end{bmatrix}}}
+\newcommand{\ar}[1]{\ensuremath{\begin{matrix}#1\end{matrix}}}
+\newcommand{\miniar}[1]{\ensuremath{\begin{smallmatrix}#1\end{smallmatrix}}}
+%contractions
+\usepackage{simplewick}
+\usepackage[nomessages]{fp}
+\newcommand{\ctr}[6][0]{\FPeval\height{0.6+#1*0.5}\ensuremath{\contraction[\height ex]{#2}{#3}{#4}{#5}}}
+\newcommand{\ccr}[4]{\ctr[0.7]{#1}{#2}{#3}{#4}{}\ctr{#1}{#2}{#3}{#4}}
+\usepackage{calc}
+\makeatletter
+\def\@hspace#1{\begingroup\setlength\dimen@{#1}\hskip\dimen@\endgroup}
+\makeatother
+\newcommand{\halfphantom}[1]{\hspace{\widthof{#1}*\real{0.5}}}
+\newcommand{\fullctr}[1]{\ensuremath{\contraction[0.5ex]{}{\vphantom{#1}}{\hphantom{#1}}{}{}{}\contraction[0.5ex]{}{\vphantom{#1}}{\halfphantom{#1}}{}{}{}#1}}
+%math sections
+\usepackage{cleveref}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\declaretheoremstyle[spaceabove=10pt,spacebelow=10pt,bodyfont=\small]{mystyle}
+\theoremstyle{mystyle}
+\newtheorem{dfn}{Definition}[section]
+\crefname{dfn}{definition}{definitions}
+\Crefname{dfn}{Def}{Defs}
+\newtheorem{thm}{Theorem}[section]
+\crefname{thm}{theorem}{theorems}
+\Crefname{thm}{Thm}{Thms}
+\newtheorem{cor}{Corollary}[section]
+\crefname{cor}{corollary}{corollaries}
+\Crefname{cor}{Cor}{Cors}
+\newtheorem{lem}{Lemma}[section]
+\crefname{lem}{lemma}{lemmas}
+\Crefname{lem}{Lem}{Lems}
+\newtheorem{rmk}{Remark}[section]
+\crefname{rmk}{remark}{remarks}
+\Crefname{rmk}{Rmk}{Rmks}
+\newtheorem{pro}{Proposition}[section]
+\crefname{pro}{proposition}{propositions}
+\Crefname{pro}{Prop}{Props}
+\newtheorem{ntt}{Notation}[section]
+\crefname{ntt}{notation}{notations}
+\Crefname{ntt}{Notation}{Notations}
+
+\usepackage{cancel}
+\usepackage{scrextend}
+
+\newcommand{\hole}{\circ}
+\newcommand{\ptcl}{\bullet}
+\newcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt}{#1}}}}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations.markings}
+%\usetikzlibrary{positioning}
+\newcommand*{\halfway}[1]{#1*\pgfdecoratedpathlength+1pt}
+\tikzset{
+->-/.style={thick,decoration={
+  markings,
+  mark=at position \halfway{#1} with {\arrow{>}}},
+  postaction={decorate}},
+-<-/.style={thick,decoration={
+  markings,
+  mark=at position \halfway{#1} with {\arrow{<}}},
+  postaction={decorate}},
+}
+\newcommand{\background}[1]{
+  \begin{scope}[on background layer]
+    #1
+  \end{scope}
+}
+\newcommand{\padborder}[1]{
+  \draw[line width=#1,opacity=0] (current bounding box.south east) rectangle (current bounding box.north west);
+}
+\newcommand{\tikpic}[2][5pt]{
+  \begin{tikzpicture}[baseline=-2.5pt]
+  #2
+  \padborder{#1}
+  \end{tikzpicture}
+}
+\newcommand{\interactionlabel}[3]{\path #3 node (#1) [draw,regular polygon, regular polygon sides=4,inner sep=0pt] {\small{#2}}}
+\newcommand{\interactionpoint}[3][black]{\path #3 node (#2) [draw,shape=circle,fill=#1,inner sep=0pt,minimum size=0.5ex] {}}
+\newcommand{\labeledinteraction}[6][black]{
+  \interactionlabel{#3}{#4}{#5};
+  \draw[dashed] (#3) to #6 to ++(#2-1,0);
+  \foreach \i in {1,...,#2}{
+    \interactionpoint[#1]{#3\i}{#6+(\i-1,0)};
+  }
+}
+\newcommand{\oneelinteraction}[5][black]{
+  \path #4 node (#2) [draw,circle,inner sep=0pt] {\small{#3}};
+  \draw[dashed] (#2) to #5;
+  \unlabeledinteraction[#1]{1}{#2}{#5}
+}
+\newcommand{\unlabeledinteraction}[4][black]{
+  \draw[dashed] #4 to ++(#2-1,0);
+  \foreach \i in {1,...,#2}{
+    \interactionpoint[#1]{#3\i}{#4+(\i-1,0)};
+  }
+}
+\newcommand{\amplitudeinteraction}[4][black]{
+  \draw[shorten >=-5pt,shorten <=-5pt] #4 to ++(#2-1,0);
+  \foreach \i in {1,...,#2}{
+    \interactionpoint[#1]{#3\i}{#4+(\i-1,0)};
+  }
+}
+
+%%%DOCUMENT%%%
+\begin{document}
+
+
+\section*{CID equations}
+
+\subsection*{Derivation in KM tensor notation}
+
+The electronic Hamiltonian can be expressed as follows.
+\begin{align}
+&&
+  H_e
+=
+  E_{\text{HF}}
++
+  H_c
+&&
+  E_{\text{HF}}
+=
+  \ip{\F|H_e|\F}
+&&
+  H_c
+=
+  f_p^q
+  \tl{a}_q^p
++
+  \tfrac{1}{4}
+  \ol{g}_{pq}^{rs}
+  \tl{a}_{rs}^{pq}
+\end{align}
+The CID ansatz parametrizes the wavefunction as $\Y\approx(c_0+\op{C}_2)\F$ where\footnote{We write the CI coefficients here as $c_{ab}^{ij}$ instead of $c_{ij}^{ab}$ in order to be consistent with Einstein notation.} $\op{C}_2=\tfrac{1}{4}c_{ab}^{ij}a_{ij}^{ab}$, and the CID correlation energy can obtained by solving the following system of linear equations
+\begin{align}
+\label{cid-linear-equations-1}
+&&
+  \ip{\F|H_c(c_0+\op{C}_2)|\F}
+=&\
+  E_cc_0
+&&
+  \implies
+&
+  \tfrac{1}{4}
+  \ip{\F|H_c|\F_{kl}^{cd}}c_{cd}^{kl}
+=&\
+  E_cc_0
+\\
+\label{cid-linear-equations-2}
+&&
+  \ip{\F_{ij}^{ab}|H_c(c_0+\op{C}_2)|\F}
+=&\
+  E_cc_{ab}^{ij}
+&&
+  \implies
+&
+  \ip{\F_{ij}^{ab}|H_c|\F}c_0
++
+  \tfrac{1}{4}
+  \ip{\F_{ij}^{ab}|H_c|\F_{kl}^{cd}}c_{cd}^{kl}
+=&\
+  E_cc_{ab}^{ij}
+\end{align}
+which come from projecting the Schr\"odinger equation in the form $H_c\Y=E_c\Y$ by $\F$ and $\F_{ij}^{ab}$.
+This is equivalent to solving for a root of the CID matrix
+\begin{align}
+&&
+  \ma{
+    \ip{\F|H_c|\F}&\ip{\F|H_c|\bo{D}}\\
+    \ip{\bo{D}|H_c|\F}&\ip{\bo{D}|H_c|\bo{D}}
+  }
+  \ma{c_0\\\bo{c}_{\bo{D}}}
+=
+  E_c
+  \ma{c_0\\\bo{c}_{\bo{D}}}
+&&
+  \bo{D}=\{\F_{ij}^{ab}\}, \ 
+  \bo{c}_{\bo{D}}=\{c_{ij}^{ab}\}
+\end{align}
+where the lowest root corresponds to the ground state correlation energy.
+The relevant matrix elements are
+\begin{align}
+\label{cid-matrix-elements}
+&&
+  \ip{\F|H_c|\F}
+=
+  0
+&&
+  \ip{\F|H_c|\F_{ij}^{ab}}
+=
+  \ol{g}_{ij}^{ab}
+&&
+  \ip{\F_{ij}^{ab}|H_c|\F_{kl}^{cd}}
+=
+  f_p^q
+  (\tl{a}_{ab}^{ij}\tl{a}_q^p\tl{a}_{kl}^{cd})_{\text{f.c.}}
++
+  \tfrac{1}{4}
+  \ol{g}_{pq}^{rs}
+  (\tl{a}_{ab}^{ij}\tl{a}_{rs}^{pq}\tl{a}_{kl}^{cd})_{\text{f.c.}}
+\end{align}
+where $(\tl{a}_{ab}^{ij}\tl{a}_q^p\tl{a}_{kl}^{cd})_{\text{f.c.}}$ and $(\tl{a}_{ab}^{ij}\tl{a}_{rs}^{pq}\tl{a}_{kl}^{cd})_{\text{f.c.}}$ can be determined using Wick's theorem
+\begin{align*}
+  (\tl{a}_{ab}^{ij}\tl{a}_q^p\tl{a}_{kl}^{cd})_{\text{f.c.}}
+=&\
+  \op{P}^{(c/d)}
+        _{(a/b|k/l)}
+  \GNO{
+    \tl{a}_{a^{\hole1}b^{\hole3}}
+          ^{i^{\ptcl1}j^{\ptcl2}}
+    \tl{a}_{q^{\hole2}}
+          ^{p^{\hole1}}
+    \tl{a}_{k^{\ptcl1}l^{\ptcl2}}
+          ^{c^{\hole2}d^{\hole3}}
+  }
++
+  \op{P}^{(i/j|c/d)}
+        _{(k/l)}
+  \GNO{
+    \tl{a}_{a^{\hole1}b^{\hole2}}
+          ^{i^{\ptcl1}j^{\ptcl3}}
+    \tl{a}_{q^{\ptcl1}}
+          ^{p^{\ptcl2}}
+    \tl{a}_{k^{\ptcl2}l^{\ptcl3}}
+          ^{c^{\hole1}d^{\hole2}}
+  }
+\\=&\
+-
+  \op{P}^{(c/d)}
+        _{(a/b|k/l)}
+  \tl{a}_{a^{\hole1}q^{\hole2}b^{\hole3}k^{\ptcl1}l^{\ptcl2}}
+        ^{p^{\hole1}c^{\hole2}d^{\hole3}i^{\ptcl1}j^{\ptcl2}}
+-
+  \op{P}^{(i/j|c/d)}
+        _{(k/l)}
+  \tl{a}_{q^{\ptcl1}k^{\ptcl2}l^{\ptcl3}a^{\hole1}b^{\hole2}}
+        ^{i^{\ptcl1}p^{\ptcl2}j^{\ptcl3}c^{\hole1}d^{\hole2}}
+\\=&\
+  \op{P}^{(c/d)}
+        _{(a/b|k/l)}
+  \h_a^p\h_q^c\h_b^d\k_k^i\k_l^j
+-
+  \op{P}^{(i/j|c/d)}
+        _{(k/l)}
+  \k_q^i\k_k^p\k_l^j\h_a^c\h_b^d
+\\
+  (\tl{a}_{ab}^{ij}\tl{a}_{rs}^{pq}\tl{a}_{kl}^{cd})_{\text{f.c.}}
+=&\
+  \op{P}^{(c/d)}
+        _{(a/b|k/l)}
+  \GNO{
+    \tl{a}_{a^{\hole1}b^{\hole2}}
+          ^{i^{\ptcl1}j^{\ptcl2}}
+    \tl{a}_{r^{\hole3}s^{\hole4}}
+          ^{p^{\hole1}q^{\hole2}}
+    \tl{a}_{k^{\ptcl1}l^{\ptcl2}}
+          ^{c^{\hole3}d^{\hole4}}
+  }
++
+  \op{P}^{(i/j|c/d)}
+        _{(k/l)}
+  \GNO{
+    \tl{a}_{a^{\hole1}b^{\hole2}}
+          ^{i^{\ptcl1}j^{\ptcl2}}
+    \tl{a}_{r^{\ptcl1}s^{\ptcl2}}
+          ^{p^{\ptcl3}q^{\ptcl4}}
+    \tl{a}_{k^{\ptcl3}l^{\ptcl4}}
+          ^{c^{\hole1}d^{\hole2}}
+  }
+\\&\
++
+  \op{P}^{(p/q|i/j|c/d)}
+        _{(r/s|k/l|a/b)}
+  \GNO{
+    \tl{a}_{a^{\hole1}b^{\hole3}}
+          ^{i^{\ptcl1}j^{\ptcl3}}
+    \tl{a}_{r^{\ptcl1}s^{\hole2}}
+          ^{p^{\ptcl2}q^{\hole1}}
+    \tl{a}_{k^{\ptcl2}l^{\ptcl3}}
+          ^{c^{\hole2}d^{\hole3}}
+  }
+\\=&\
+  \op{P}^{(c/d)}
+        _{(a/b|k/l)}
+  \tl{a}_{a^{\hole1}b^{\hole2}r^{\hole3}s^{\hole4}
+          k^{\ptcl1}l^{\ptcl2}}
+        ^{p^{\hole1}q^{\hole2}c^{\hole3}d^{\hole4}
+          i^{\ptcl1}j^{\ptcl2}}
++
+  \op{P}^{(i/j|c/d)}
+        _{(k/l)}
+  \tl{a}_{r^{\ptcl1}s^{\ptcl2}k^{\ptcl3}l^{\ptcl4}
+          a^{\hole1}b^{\hole2}}
+        ^{i^{\ptcl1}j^{\ptcl2}p^{\ptcl3}q^{\ptcl4}
+          c^{\hole1}d^{\hole2}}
++
+  \op{P}^{(p/q|i/j|c/d)}
+        _{(r/s|k/l|a/b)}
+  \tl{a}_{r^{\ptcl1}k^{\ptcl2}l^{\ptcl3}
+          a^{\hole1}s^{\hole2}b^{\hole3}}
+        ^{i^{\ptcl1}p^{\ptcl2}j^{\ptcl3}
+          q^{\hole1}c^{\hole2}d^{\hole3}}
+\\=&\
+  \op{P}^{(c/d)}
+        _{(a/b|k/l)}
+  \h_a^p\h_b^q\h_r^c\h_s^d
+  \k_k^i\k_l^j
++
+  \op{P}^{(i/j|c/d)}
+        _{(k/l)}
+  \k_r^i\k_s^j\k_k^p\k_l^q
+  \h_a^c\h_b^d
+-
+  \op{P}^{(p/q|i/j|c/d)}
+        _{(r/s|k/l|a/b)}
+  \k_r^i\k_k^p\k_l^j
+  \h_a^q\h_s^c\h_b^d
+\end{align*}
+giving
+\begin{align}
+\label{doubles-block}
+  \ip{\F_{ij}^{ab}|H_c|\F_{kl}^{cd}}
+=
+  \op{P}^{(c/d)}_{(a/b|k/l)}
+  f_a^c\d_b^d\d_k^i\d_l^j
+-
+  \op{P}^{(i/j|c/d)}_{(k/l)}
+  f_k^i\d_l^j\d_a^c\d_b^d
++
+  \op{P}_{(k/l)}
+  \ol{g}_{ab}^{cd}\d_k^i\d_l^j
++
+  \op{P}^{(c/d)}
+  \ol{g}_{kl}^{ij}\d_a^c\d_b^d
+-
+  \op{P}^{(i/j|c/d)}_{(k/l|a/b)}
+  \ol{g}_{ka}^{ic}\d_l^j\d_b^d
+\end{align}
+for the matrix elements of the doubles block, $\ip{\bo{D}|H_c|\bo{D}}$.
+Efficient CI implementations utilize a ``direct algorithm'', in which the Hamiltonian matrix $\bo{\tl{H}}=[\ip{\F_P|H_c|\F_Q}]$ is never constructed and stored in memory.
+Instead, the product $\bo{\tl{H}}\bo{c}$ is computed directly (hence the name) for a given trial vector $\bo{c}$.
+This matrix-vector product is called the ``sigma vector'', $\bm\si$, with elements $\si_P=\sum_Q\ip{\F_P|H_c|\F_Q}c_Q$.
+Elements of the CID sigma vector are given by the left-hand sides of equations \ref{cid-linear-equations-1} and \ref{cid-linear-equations-2}.
+Using equations \ref{cid-matrix-elements} and \ref{doubles-block}, the working expressions for $\si_0$ and $\si_{ab}^{ij}$ are as follows.
+\begin{align}
+  \si_0
+=&\
+  \tfrac{1}{4}
+  \ol{g}_{kl}^{cd}c_{cd}^{kl}
+&&
+  \pr{\si_0\equiv\tfrac{1}{4}\ip{\F|H_c|\F_{kl}^{cd}}c_{cd}^{kl}}
+\\
+  \si_{ab}^{ij}
+=&\
+  \ol{g}_{ab}^{ij}c_0
++
+  \op{P}_{(a/b)}
+  f_a^c c_{cb}^{ij}
+-
+  \op{P}^{(i/j)}
+  f_k^ic_{ab}^{kj}
++
+  \tfrac{1}{2}
+  \ol{g}_{ab}^{cd}c_{cd}^{ij}
++
+  \tfrac{1}{2}
+  \ol{g}_{kl}^{ij}
+  c_{ab}^{kl}
+-
+  \op{P}^{(i/j)}_{(a/b)}
+  \ol{g}_{ka}^{ic}c_{cb}^{kj}
+&&
+  \pr{\si_{ab}^{ij}\equiv\tfrac{1}{4}\ip{\F_{ij}^{ab}|H_c|\F_{kl}^{cd}}c_{cd}^{kl}}
+\end{align}
+
+
+\subsection*{Derivation in diagrammatic notation}
+
+In diagrammatic notation, $H_c$ is given by the following.
+\begin{align}
+&&
+  H_c
+=&\
+\tikpic{
+  \oneelinteraction[white]{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(0,+0.5);
+    \draw[-<-=0.5] (f1) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \unlabeledinteraction[white]{2}{g}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+&
+\tikpic{
+  \oneelinteraction[white]{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(0,+0.5);
+    \draw[-<-=0.5] (f1) to ++(0,-0.5);
+  }
+}
+=&\
+\tikpic{
+  \oneelinteraction{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(0,+0.5);
+    \draw[-<-=0.5] (f1) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \oneelinteraction{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (f1) to ++(+0.25,0.5);
+  }
+}
++
+\tikpic{
+  \oneelinteraction{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (f1) to ++(+0.25,-0.5);
+  }
+}
++
+\tikpic{
+  \oneelinteraction{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[-<-=0.5] (f1) to ++(0,+0.5);
+    \draw[->-=0.5] (f1) to ++(0,-0.5);
+  }
+}
+\\
+\nonumber
+&&&&
+\tikpic{
+  \unlabeledinteraction[white]{2}{g}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+=&\
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,0.5);
+  }
+}
++
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,-0.5);
+  }
+}
++
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (g1) to ++(+0.25,0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,0.5);
+  }
+}
++
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[-<-=0.5] (g2) to ++(0,+0.5);
+    \draw[->-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+\\&&&&&\ +
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (g1) to ++(+0.25,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,-0.5);
+  }
+}
++
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)}
+  \background{
+    \draw[-<-=0.5] (g1) to ++(0,0.5);
+    \draw[->-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,0.5);
+  }
+}
++
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)}
+  \background{
+    \draw[-<-=0.5] (g1) to ++(0,0.5);
+    \draw[->-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,-0.5);
+  }
+}
++
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0)}
+  \background{
+    \draw[-<-=0.5] (g1) to ++(0,0.5);
+    \draw[->-=0.5] (g1) to ++(0,-0.5);
+    \draw[-<-=0.5] (g2) to ++(0,0.5);
+    \draw[->-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+\end{align}
+Where the diagrams with open-circle interaction points are
+\begin{align}
+&&
+\tikpic[0pt]{
+  \oneelinteraction[white]{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(0,+0.5);
+    \draw[-<-=0.5] (f1) to ++(0,-0.5);
+  }
+}
+\equiv
+  f_p^q
+  \tl{a}_q^p
+&&
+\tikpic[0pt]{
+  \unlabeledinteraction[white]{2}{g}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+\equiv
+  \tfrac{1}{4}
+  \ol{g}_{pq}^{rs}
+  \tl{a}_{rs}^{pq}
+\end{align}
+and those with closed-circle interaction points are their expansions in terms of quasiparticle operators $\{b_p\}=\{a_i\dg\}\cup\{a_a\}$ and $\{b_p\dg\}=\{a_i\}\cup\{a_a\dg\}$.
+In terms of KM notation, using the original set of operators, these diagram expansions correspond to the following equations.
+\begin{align}
+  f_p^q\tl{a}_q^p
+=&\
+  f_a^b\tl{a}_b^a
++
+  f_a^i\tl{a}_i^a
++
+  f_i^a\tl{a}_a^i
++
+  f_i^j\tl{a}_j^i
+\\
+  \tfrac{1}{4}\ol{g}_{pq}^{rs}\tl{a}_{rs}^{pq}
+=&\
+  \tfrac{1}{4}
+  \ol{g}_{ab}^{cd}\tl{a}_{cd}^{ab}
++
+  \tfrac{1}{2}
+  \ol{g}_{ab}^{ci}\tl{a}_{ci}^{ab}
++
+  \tfrac{1}{2}
+  \ol{g}_{ai}^{bc}\tl{a}_{bc}^{ai}
++
+  \tfrac{1}{4}
+  \ol{g}_{ab}^{ij}\tl{a}_{ij}^{ab}
++
+  \ol{g}_{ai}^{bj}\tl{a}_{bj}^{ai}
++
+  \tfrac{1}{4}
+  \ol{g}_{ij}^{ab}\tl{a}_{ab}^{ij}
++
+  \tfrac{1}{2}
+  \ol{g}_{ia}^{jk}\tl{a}_{jk}^{ia}
++
+  \tfrac{1}{2}
+  \ol{g}_{ij}^{ka}\tl{a}_{ka}^{ij}
++
+  \tfrac{1}{4}\ol{g}_{ij}^{kl}\tl{a}_{kl}^{ij}
+\end{align}
+The CI double excitation operator is given by
+\begin{align}
+&&
+  \op{C}_2
+=
+  \tfrac{1}{4}
+  \sum_{ijab}
+  c_{ab}^{ij}
+  b_a\dg b_b\dg b_j\dg b_i\dg
+=
+\tikpic{
+  \amplitudeinteraction{2}{c}{(0,-0.25)};
+  \background{
+    \draw[->-=0.5] (c1) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (c1) to ++(+0.25,0.5);
+    \draw[->-=0.5] (c2) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (c2) to ++(+0.25,0.5);
+  }
+}
+&&
+\pr{=\tfrac{1}{4}c_{ab}^{ij}a_{ij}^{ab}=\tfrac{1}{4}c_{ab}^{ij}\tl{a}_{ij}^{ab}\ \text{in KM notation}}\ .
+\end{align}
+The sigma vector elements are therefore given by
+\begin{align}
+  \si_0
+=
+  \ip{\F|H_c(c_0+\op{C}_2)|\F}
+=&\
+c_0
+\pr{
+\tikpic{
+  \oneelinteraction[white]{f}{$\times$}{(-0.25,0.25)}{(0.5,0.25)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(+0.00,+0.5);
+    \draw[-<-=0.5] (f1) to ++(+0.00,-0.5);
+  }
+  \draw[white] (-0.25,-0.75) to (0.5,-0.75);
+  \padborder{5pt}
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
++
+\tikpic{
+  \unlabeledinteraction[white]{2}{g}{(0,0.25)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(+0.00,+0.5);
+    \draw[-<-=0.5] (g1) to ++(+0.00,-0.5);
+    \draw[->-=0.5] (g2) to ++(+0.00,+0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.00,-0.5);
+  }
+  \draw[white] (0.0,-0.75) to (1.0,-0.75);
+  \padborder{5pt}
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
+}
++
+\tikpic{
+  \oneelinteraction[white]{f}{$\times$}{(-0.25,0.25)}{(0.5,0.25)};
+  \amplitudeinteraction{2}{c}{(0,-0.75)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(+0.00,+0.5);
+    \draw[-<-=0.5] (f1) to ++(+0.00,-0.5);
+    \draw[->-=0.5] (c1) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c1) to ++(+0.25,+0.5);
+    \draw[->-=0.5] (c2) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c2) to ++(+0.25,+0.5);
+  }
+  \padborder{5pt}
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
++
+\tikpic{
+  \unlabeledinteraction[white]{2}{g}{(0,0.25)};
+  \amplitudeinteraction{2}{c}{(0,-0.75)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(+0.00,+0.5);
+    \draw[-<-=0.5] (g1) to ++(+0.00,-0.5);
+    \draw[->-=0.5] (g2) to ++(+0.00,+0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.00,-0.5);
+    \draw[->-=0.5] (c1) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c1) to ++(+0.25,+0.5);
+    \draw[->-=0.5] (c2) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c2) to ++(+0.25,+0.5);
+  }
+  \padborder{5pt}
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
+\\
+  \si_{ab}^{ij}
+=
+  \ip{\F_{ij}^{ab}|H_c(c_0+\op{C}_2)|\F}
+=&\
+c_0
+\pr{
+\tikpic{
+  \oneelinteraction[white]{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \interactionpoint{a}{(-0.75,1.0)};
+  \interactionpoint{i}{(-0.25,1.0)};
+  \interactionpoint{b}{(+0.25,1.0)};
+  \interactionpoint{j}{(+0.75,1.0)};
+  \node[above=0.5pt of i] () {\small{$i$}};
+  \node[above=0.5pt of a] () {\small{$a$}};
+  \node[above=0.5pt of j] () {\small{$j$}};
+  \node[above=0.5pt of b] () {\small{$b$}};
+  \background{
+    \draw[->-=0.5] (f1) to ++(0,+0.5);
+    \draw[-<-=0.5] (f1) to ++(0,-0.5);
+    \draw[-<-=0.5] (a)  to ++(0,-0.5);
+    \draw[->-=0.5] (i)  to ++(0,-0.5);
+    \draw[-<-=0.5] (b)  to ++(0,-0.5);
+    \draw[->-=0.5] (j)  to ++(0,-0.5);
+  }
+  \draw[white] (-0.5,-1.0) to (+0.5,-1.0);
+  \padborder{5pt};
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
++
+\tikpic{
+  \unlabeledinteraction[white]{2}{g}{(-0.5,0)};
+  \interactionpoint{a}{(-0.75,1.0)};
+  \interactionpoint{i}{(-0.25,1.0)};
+  \interactionpoint{b}{(+0.25,1.0)};
+  \interactionpoint{j}{(+0.75,1.0)};
+  \node[above=0.5pt of i] () {\small{$i$}};
+  \node[above=0.5pt of a] () {\small{$a$}};
+  \node[above=0.5pt of j] () {\small{$j$}};
+  \node[above=0.5pt of b] () {\small{$b$}};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+    \draw[-<-=0.5] (a)  to ++(0,-0.5);
+    \draw[->-=0.5] (i)  to ++(0,-0.5);
+    \draw[-<-=0.5] (b)  to ++(0,-0.5);
+    \draw[->-=0.5] (j)  to ++(0,-0.5);
+  }
+  \draw[white] (-0.5,-1.0) to (+0.5,-1.0);
+  \padborder{5pt};
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}}
++
+\tikpic{
+  \oneelinteraction[white]{f}{$\times$}{(-0.75,0)}{(0,0)};
+  \interactionpoint{a}{(-0.75,1.0)};
+  \interactionpoint{i}{(-0.25,1.0)};
+  \interactionpoint{b}{(+0.25,1.0)};
+  \interactionpoint{j}{(+0.75,1.0)};
+  \node[above=0.5pt of i] () {\small{$i$}};
+  \node[above=0.5pt of a] () {\small{$a$}};
+  \node[above=0.5pt of j] () {\small{$j$}};
+  \node[above=0.5pt of b] () {\small{$b$}};
+  \amplitudeinteraction{2}{c}{(-0.5,-1.0)};
+  \background{
+    \draw[->-=0.5] (f1) to ++(0,+0.5);
+    \draw[-<-=0.5] (f1) to ++(0,-0.5);
+    \draw[-<-=0.5] (a)  to ++(0,-0.5);
+    \draw[->-=0.5] (i)  to ++(0,-0.5);
+    \draw[-<-=0.5] (b)  to ++(0,-0.5);
+    \draw[->-=0.5] (j)  to ++(0,-0.5);
+    \draw[->-=0.5] (c1) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c1) to ++(+0.25,+0.5);
+    \draw[->-=0.5] (c2) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c2) to ++(+0.25,+0.5);
+  }
+  \padborder{5pt};
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
++
+\tikpic{
+  \unlabeledinteraction[white]{2}{g}{(-0.5,0)};
+  \interactionpoint{a}{(-0.75,1.0)};
+  \interactionpoint{i}{(-0.25,1.0)};
+  \interactionpoint{b}{(+0.25,1.0)};
+  \interactionpoint{j}{(+0.75,1.0)};
+  \node[above=0.5pt of i] () {\small{$i$}};
+  \node[above=0.5pt of a] () {\small{$a$}};
+  \node[above=0.5pt of j] () {\small{$j$}};
+  \node[above=0.5pt of b] () {\small{$b$}};
+  \amplitudeinteraction{2}{c}{(-0.5,-1.0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+    \draw[-<-=0.5] (a)  to ++(0,-0.5);
+    \draw[->-=0.5] (i)  to ++(0,-0.5);
+    \draw[-<-=0.5] (b)  to ++(0,-0.5);
+    \draw[->-=0.5] (j)  to ++(0,-0.5);
+    \draw[->-=0.5] (c1) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c1) to ++(+0.25,+0.5);
+    \draw[->-=0.5] (c2) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c2) to ++(+0.25,+0.5);
+  }
+  \padborder{5pt};
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
+\end{align}
+In the $\si_0$ expression, only the final diagram is non-vanishing.
+\begin{align}
+&&
+  \si_0
+=&\
+\tikpic{
+  \unlabeledinteraction[white]{2}{g}{(0,0.25)};
+  \amplitudeinteraction{2}{c}{(0,-0.75)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(+0.00,+0.5);
+    \draw[-<-=0.5] (g1) to ++(+0.00,-0.5);
+    \draw[->-=0.5] (g2) to ++(+0.00,+0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.00,-0.5);
+    \draw[->-=0.5] (c1) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c1) to ++(+0.25,+0.5);
+    \draw[->-=0.5] (c2) to ++(-0.25,+0.5);
+    \draw[-<-=0.5] (c2) to ++(+0.25,+0.5);
+  }
+  \padborder{5pt}
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
+=
+\tikpic{
+  \unlabeledinteraction{2}{g}{(0,0.5)};
+  \amplitudeinteraction{2}{c}{(0,-0.5)};
+  \background{
+    \draw[->-=0.5,bend left ] (c1) to (g1);
+    \draw[-<-=0.5,bend right] (c1) to (g1);
+    \draw[->-=0.5,bend left ] (c2) to (g2);
+    \draw[-<-=0.5,bend right] (c2) to (g2);
+  }
+}
+=
+  \tfrac{1}{4}
+  \ol{g}_{kl}^{cd}c_{cd}^{kl}
+\end{align}
+In the $\si_{ab}^{ij}$ expression, the first diagram vanishes and the second diagram evaluates as follows.
+\begin{align}
+&&
+\tikpic{
+  \unlabeledinteraction{2}{g}{(-0.5,-0.5)};
+  \interactionpoint{a}{(-0.75,0.5)};
+  \interactionpoint{i}{(-0.25,0.5)};
+  \interactionpoint{b}{(+0.25,0.5)};
+  \interactionpoint{j}{(+0.75,0.5)};
+  \node[above=0.5pt of i] () {\small{$i$}};
+  \node[above=0.5pt of a] () {\small{$a$}};
+  \node[above=0.5pt of j] () {\small{$j$}};
+  \node[above=0.5pt of b] () {\small{$b$}};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+    \draw[-<-=0.5] (a)  to ++(0,-0.5);
+    \draw[->-=0.5] (i)  to ++(0,-0.5);
+    \draw[-<-=0.5] (b)  to ++(0,-0.5);
+    \draw[->-=0.5] (j)  to ++(0,-0.5);
+  }
+  \padborder{5pt};
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
+=
+\tikpic{
+  \unlabeledinteraction{2}{g}{(-0.5,-0.25)};
+  \interactionpoint{a}{(-0.75,0.25)};
+  \interactionpoint{i}{(-0.25,0.25)};
+  \interactionpoint{b}{(+0.25,0.25)};
+  \interactionpoint{j}{(+0.75,0.25)};
+  \node[above=0.5pt of i] () {\small{$i$}};
+  \node[above=0.5pt of a] () {\small{$a$}};
+  \node[above=0.5pt of j] () {\small{$j$}};
+  \node[above=0.5pt of b] () {\small{$b$}};
+  \background{
+    \draw[->-=0.5] (g1) to (a);
+    \draw[-<-=0.5] (g1) to (i);
+    \draw[->-=0.5] (g2) to (b);
+    \draw[-<-=0.5] (g2) to (j);
+  }
+}
+=
+  \ol{g}_{ab}^{ij}
+\end{align}
+
+
+\end{document}

@@ -1,0 +1,765 @@
+\documentclass[11pt,fleqn]{article}
+\usepackage[cm]{fullpage}
+\usepackage{mathtools} %includes amsmath
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{xfrac}
+\usepackage{url}
+%greek letters
+\renewcommand{\a}{\alpha}    %alpha
+\renewcommand{\b}{\beta}     %beta
+\newcommand{\g}{\gamma}      %gamma
+\newcommand{\G}{\Gamma}      %Gamma
+\renewcommand{\d}{\delta}    %delta
+\newcommand{\D}{\Delta}      %Delta
+\newcommand{\e}{\varepsilon} %epsilon
+\newcommand{\ev}{\epsilon}   %epsilon*
+\newcommand{\z}{\zeta}       %zeta
+\newcommand{\h}{\eta}        %eta
+\renewcommand{\th}{\theta}   %theta
+\newcommand{\Th}{\Theta}     %Theta
+\newcommand{\io}{\iota}      %iota
+\renewcommand{\k}{\kappa}    %kappa
+\newcommand{\la}{\lambda}    %lambda
+\newcommand{\La}{\Lambda}    %Lambda
+\newcommand{\m}{\mu}         %mu
+\newcommand{\n}{\nu}         %nu %xi %Xi %pi %Pi
+\newcommand{\p}{\rho}        %rho
+\newcommand{\si}{\sigma}     %sigma
+\newcommand{\siv}{\varsigma} %sigma*
+\newcommand{\Si}{\Sigma}     %Sigma
+\renewcommand{\t}{\tau}      %tau
+\newcommand{\up}{\upsilon}   %upsilon
+\newcommand{\f}{\phi}        %phi
+\newcommand{\F}{\Phi}        %Phi
+\newcommand{\x}{\chi}        %chi
+\newcommand{\y}{\psi}        %psi
+\newcommand{\Y}{\Psi}        %Psi
+\newcommand{\w}{\omega}      %omega
+\newcommand{\W}{\Omega}      %Omega
+%ornaments
+\newcommand{\eth}{\ensuremath{^\text{th}}}
+\newcommand{\rst}{\ensuremath{^\text{st}}}
+\newcommand{\ond}{\ensuremath{^\text{nd}}}
+\newcommand{\ord}[1]{\ensuremath{^{(#1)}}}
+\newcommand{\dg}{\ensuremath{^\dagger}}
+\newcommand{\bigo}{\ensuremath{\mathcal{O}}}
+\newcommand{\tl}{\ensuremath{\tilde}}
+\newcommand{\ol}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\ul}[1]{\ensuremath{\underline{#1}}}
+\newcommand{\op}[1]{\ensuremath{\hat{#1}}}
+\newcommand{\ot}{\ensuremath{\otimes}}
+\newcommand{\wg}{\ensuremath{\wedge}}
+%text
+\newcommand{\tr}{\ensuremath{\hspace{1pt}\mathrm{tr}\hspace{1pt}}}
+\newcommand{\Alt}{\ensuremath{\mathrm{Alt}}}
+\newcommand{\sgn}{\ensuremath{\mathrm{sgn}}}
+\newcommand{\occ}{\ensuremath{\mathrm{occ}}}
+\newcommand{\vir}{\ensuremath{\mathrm{vir}}}
+\newcommand{\spn}{\ensuremath{\mathrm{span}}}
+\newcommand{\vac}{\ensuremath{\mathrm{vac}}}
+\newcommand{\bs}{\ensuremath{\text{\textbackslash}}}
+\newcommand{\im}{\ensuremath{\mathrm{im}\hspace{1pt}}}
+\renewcommand{\sp}{\hspace{30pt}}
+%dots
+\newcommand{\ld}{\ensuremath{\ldots}}
+\newcommand{\cd}{\ensuremath{\cdots}}
+\newcommand{\vd}{\ensuremath{\vdots}}
+\newcommand{\dd}{\ensuremath{\ddots}}
+\newcommand{\etc}{\ensuremath{\mathinner{\mkern-1mu\cdotp\mkern-2mu\cdotp\mkern-2mu\cdotp\mkern-1mu}}}
+%fonts
+\newcommand{\bmit}[1]{{\bfseries\itshape\mathversion{bold}#1}}
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\mb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\mf}[1]{\ensuremath{\mathfrak{#1}}}
+\newcommand{\mr}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\bo}[1]{\ensuremath{\mathbf{#1}}}
+%styles
+\newcommand{\ts}{\textstyle}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\phsub}{\ensuremath{_{\phantom{p}}}}
+\newcommand{\phsup}{\ensuremath{^{\phantom{p}}}}
+%fractions, derivatives, parentheses, brackets, etc.
+\newcommand{\pr}[1]{\ensuremath{\left(#1\right)}}
+\newcommand{\brk}[1]{\ensuremath{\left[#1\right]}}
+\newcommand{\fr}[2]{\ensuremath{\dfrac{#1}{#2}}}
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial#1}{\partial#2}}}
+\newcommand{\pt}{\ensuremath{\partial}}
+\newcommand{\br}[1]{\ensuremath{\langle#1|}}
+\newcommand{\kt}[1]{\ensuremath{|#1\rangle}}
+\newcommand{\ip}[1]{\ensuremath{\langle#1\rangle}}
+\newcommand{\NO}[1]{\ensuremath{{\bm{:}}#1{}{\bm{:}}}}
+\newcommand{\floor}[1]{\ensuremath{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{\ensuremath{\left\lceil#1\right\rceil}}
+\usepackage{stackengine}
+\newcommand{\GNO}[1]{\setstackgap{S}{0.7pt}\ensuremath{\Shortstack{\textbf{.} \textbf{.} \textbf{.}}#1\Shortstack{\textbf{.} \textbf{.} \textbf{.}}}}
+\newcommand{\cmtr}[2]{\ensuremath{[\cdot,#2]^{#1}}}
+\newcommand{\cmtl}[2]{\ensuremath{[#2,\cdot]^{#1}}}
+%structures
+\newcommand{\eqn}[1]{(\ref{#1})}
+\newcommand{\ma}[1]{\ensuremath{\begin{bmatrix}#1\end{bmatrix}}}
+\newcommand{\ar}[1]{\ensuremath{\begin{matrix}#1\end{matrix}}}
+\newcommand{\miniar}[1]{\ensuremath{\begin{smallmatrix}#1\end{smallmatrix}}}
+%contractions
+\usepackage{simplewick}
+\usepackage[nomessages]{fp}
+\newcommand{\ctr}[6][0]{\FPeval\height{0.6+#1*0.5}\ensuremath{\contraction[\height ex]{#2}{#3}{#4}{#5}}}
+\newcommand{\ccr}[4]{\ctr[0.7]{#1}{#2}{#3}{#4}{}\ctr{#1}{#2}{#3}{#4}}
+\usepackage{calc}
+\makeatletter
+\def\@hspace#1{\begingroup\setlength\dimen@{#1}\hskip\dimen@\endgroup}
+\makeatother
+\newcommand{\halfphantom}[1]{\hspace{\widthof{#1}*\real{0.5}}}
+\newcommand{\fullctr}[1]{\ensuremath{\contraction[0.5ex]{}{\vphantom{#1}}{\hphantom{#1}}{}{}{}\contraction[0.5ex]{}{\vphantom{#1}}{\halfphantom{#1}}{}{}{}#1}}
+%math sections
+\usepackage{cleveref}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\declaretheoremstyle[spaceabove=10pt,spacebelow=10pt,bodyfont=\small]{mystyle}
+\theoremstyle{mystyle}
+\newtheorem{dfn}{Definition}[section]
+\crefname{dfn}{definition}{definitions}
+\Crefname{dfn}{Def}{Defs}
+\newtheorem{thm}{Theorem}[section]
+\crefname{thm}{theorem}{theorems}
+\Crefname{thm}{Thm}{Thms}
+\newtheorem{cor}{Corollary}[section]
+\crefname{cor}{corollary}{corollaries}
+\Crefname{cor}{Cor}{Cors}
+\newtheorem{lem}{Lemma}[section]
+\crefname{lem}{lemma}{lemmas}
+\Crefname{lem}{Lem}{Lems}
+\newtheorem{rmk}{Remark}[section]
+\crefname{rmk}{remark}{remarks}
+\Crefname{rmk}{Rmk}{Rmks}
+\newtheorem{pro}{Proposition}[section]
+\crefname{pro}{proposition}{propositions}
+\Crefname{pro}{Prop}{Props}
+\newtheorem{ntt}{Notation}[section]
+\crefname{ntt}{notation}{notations}
+\Crefname{ntt}{Notation}{Notations}
+\newcommand{\logbox}{\ensuremath{\text{\makebox[\widthof{exp}][c]{ln}}}}
+\newcommand{\expbox}{\ensuremath{\text{\makebox[\widthof{exp}][c]{exp}}}}
+
+\numberwithin{equation}{section}
+\usepackage{cancel}
+\usepackage{scrextend}
+
+\newcommand{\hole}{\circ}
+\newcommand{\ptcl}{\bullet}
+\newcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt}{#1}}}}
+
+\usepackage{tikz}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations.markings}
+%\usetikzlibrary{positioning}
+\newcommand*{\halfway}[1]{#1*\pgfdecoratedpathlength+1pt}
+\tikzset{
+->-/.style={thick,decoration={
+  markings,
+  mark=at position \halfway{#1} with {\arrow{>}}},
+  postaction={decorate}},
+-<-/.style={thick,decoration={
+  markings,
+  mark=at position \halfway{#1} with {\arrow{<}}},
+  postaction={decorate}}
+}
+\newcommand{\background}[1]{
+  \begin{scope}[on background layer]
+    #1
+  \end{scope}
+}
+\newcommand{\padborder}[1]{
+  \draw[line width=#1,opacity=0] (current bounding box.south east) rectangle (current bounding box.north west);
+}
+\newcommand{\tikpic}[2][5pt]{
+  \begin{tikzpicture}[baseline=-2.5pt]
+  #2
+  \padborder{#1}
+  \end{tikzpicture}
+}
+\newcommand{\interactionlabel}[3]{\path #3 node (#1) [draw,regular polygon, regular polygon sides=4,inner sep=0pt] {\small{#2}}}
+\newcommand{\interactionpoint}[3][black]{\path #3 node (#2) [draw,shape=circle,fill=#1,inner sep=0pt,minimum size=0.5ex] {}}
+\newcommand{\labeledinteraction}[6][black]{
+  \interactionlabel{#3}{#4}{#5};
+  \draw[dashed] (#3) to #6 to ++(#2-1,0);
+  \foreach \i in {1,...,#2}{
+    \interactionpoint[#1]{#3\i}{#6+(\i-1,0)};
+  }
+}
+\newcommand{\unlabeledinteraction}[4][black]{
+  \draw[dashed] #4 to ++(#2-1,0);
+  \foreach \i in {1,...,#2}{
+    \interactionpoint[#1]{#3\i}{#4+(\i-1,0)};
+  }
+}
+
+
+
+%%%DOCUMENT%%%
+\begin{document}
+
+\begin{align*}
+  \ip{\F|h_p^qa_q^p+\tfrac{1}{4}\ol{g}_{pq}^{rs}a_{rs}^{pq}|\F}
+=
+  h_p^qa_{q^\ptcl}^{p^\ptcl}
++
+  \tfrac{1}{4}
+  \ol{g}_{pq}^{rs}a_{r^\ptcl s^{\ptcl\ptcl}}^{p^\ptcl q^{\ptcl\ptcl}}
++
+  \tfrac{1}{4}
+  \ol{g}_{pq}^{rs}a_{r^\ptcl s^{\ptcl\ptcl}}^{p^{\ptcl\ptcl}q^\ptcl}
+\end{align*}
+
+\begin{align*}
+\tikpic[0pt]{
+  \labeledinteraction[white]{1}{h}{$\NO{\bm{h}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (h1) to ++(0,+0.5) node [above] {$p$};
+    \draw[-<-=0.5] (h1) to ++(0,-0.5) node [below] {$q$};
+  }
+}
+\equiv
+  h_p^qa_q^p
+\end{align*}
+
+\begin{align*}
+\tikpic[0pt]{
+  \labeledinteraction[white]{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5) node [above] {$p$};
+    \draw[-<-=0.5] (g1) to ++(0,-0.5) node [below] {$r$};
+    \draw[->-=0.5] (g2) to ++(0,+0.5) node [above] {$q$};
+    \draw[-<-=0.5] (g2) to ++(0,-0.5) node [below] {$s$};
+  }
+}
+\equiv
+  \ol{g}_{pq}^{rs}a_{rs}^{pq}
+\end{align*}
+
+\begin{align*}
+\tikpic{
+  \labeledinteraction[white]{1}{h}{$\NO{\bm{h}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (h1) to ++(0,+0.5);
+    \draw[-<-=0.5] (h1) to ++(0,-0.5);
+  }
+}
+\equiv
+  \sum_{\miniar{p\\q}}
+  h_p^qa_q^p
+\end{align*}
+
+\begin{align*}
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+\equiv
+  \frac{1}{4}
+  \sum_{\miniar{pq\\rs}}
+  \ol{g}_{pq}^{rs}
+  a_{rs}^{pq}
+\end{align*}
+
+\begin{align*}
+  \sum_{\miniar{p\\q}}
+  h_p^qa_q^p
+=
+  \sum_{\miniar{p\\q}}
+  h_p^q\tl{a}_q^p
++
+  \sum_{\miniar{p\\q}}
+  h_p^q\GNO{a_{q^\ptcl}^{p^\ptcl}}
+\end{align*}
+
+\begin{align*}
+\tikpic{
+  \labeledinteraction[white]{1}{h}{$\NO{\bm{h}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (h1) to ++(0,+0.5);
+    \draw[-<-=0.5] (h1) to ++(0,-0.5);
+  }
+}
+=
+\tikpic{
+  \labeledinteraction[white]{1}{h}{$\GNO{\bm{h}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (h1) to ++(0,+0.5);
+    \draw[-<-=0.5] (h1) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction[white]{1}{h}{$\GNO{\bm{h}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (h1) arc (0:360:-0.25);
+  }
+}
+\end{align*}
+
+\begin{align*}
+  \frac{1}{4}
+  \sum_{\miniar{pq\\rs}}
+  \ol{g}_{pq}^{rs}
+  a_{rs}^{pq}
+=&\
+  \frac{1}{4}
+  \sum_{\miniar{pq\\rs}}
+  \ol{g}_{pq}^{rs}
+  \tl{a}_{rs}^{pq}
++
+  \frac{1}{4}
+  \sum_{\miniar{pq\\rs}}
+  \ol{g}_{pq}^{rs}
+  \op{P}_{(r/s)}^{(p/q)}
+  \GNO{a_{rs^\ptcl}^{pq^\ptcl}}
++
+  \frac{1}{4}
+  \sum_{\miniar{pq\\rs}}
+  \ol{g}_{pq}^{rs}
+  \op{P}_{(r/s)}
+  \GNO{a_{r^\ptcl s^{\ptcl\ptcl}}^{p^\ptcl q^{\ptcl\ptcl}}}
+\\=&\
+  \frac{1}{4}
+  \sum_{\miniar{pq\\rs}}
+  \ol{g}_{pq}^{rs}
+  \tl{a}_{rs}^{pq}
++
+  \sum_{\miniar{p\\r}}
+  \pr{
+  \ts
+    \sum_{i}
+    \ol{g}_{pi}^{ri}
+  }
+  \tl{a}_r^p
++
+  \frac{1}{2}
+  \sum_{ij}
+  \ol{g}_{ij}^{ij}
+\end{align*}
+
+\begin{align*}
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+=&\
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
++
+  \fr{1}{4}
+\left(
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[-<-=0.5] (g2) arc (0:360:-0.25);
+  }
+}
++
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[->-=0.4] (g1)    arc (0:180:-0.25)
+                   (0.5,0) arc (360:180:-0.25);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.4] (g1)    arc (360:180:-0.25)
+                   (0.5,0) arc (  0:180:-0.25);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+  }
+}
+\right.
+\\&\
+\left.
++
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[-<-=0.5] (g1) arc (0:360:-0.25);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+\right)
++
+  \fr{1}{2}
+\pr{
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[-<-=0.5] (g1) arc (0:360:-0.25);
+    \draw[-<-=0.5] (g2) arc (0:360:-0.25);
+  }
+}
++
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.4] (g1)    arc (0:180:-0.25)
+                   (0.5,0) arc (360:180:-0.25);
+    \draw[->-=0.4] (g1)    arc (360:180:-0.25)
+                   (0.5,0) arc (  0:180:-0.25);
+  }
+}
+}
+\\=&\
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,+0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[-<-=0.5] (g2) arc (0:360:-0.25);
+  }
+}
++
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\GNO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[-<-=0.5] (g1) arc (0:360:-0.25);
+    \draw[-<-=0.5] (g2) arc (0:360:-0.25);
+  }
+}
+\end{align*}
+
+
+\begin{align*}
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+  }
+  \padborder{10pt};
+  \draw[thick,double] (current bounding box.north west) to
+        (current bounding box.north east);
+  \draw[thick,double] (current bounding box.south west) to
+        (current bounding box.south east);
+}
+\end{align*}
+
+
+\begin{align*}
+  \sum_{pq}
+  h_{pq}a_p\dg a_q
+=&\
+  \sum_{ab}
+  h_{ab}a_a\dg a_b
++
+  \sum_{ai}
+  h_{ai}a_a\dg a_i
++
+  \sum_{ia}
+  h_{ia}a_i\dg a_a
++
+  \sum_{ij}
+  h_{ij}a_i\dg a_j
+\\=&\
+  \sum_{ab}
+  h_{ab}b_a\dg b_b
++
+  \sum_{ai}
+  h_{ai}b_a\dg b_i\dg
++
+  \sum_{ia}
+  h_{ia}b_ib_a
++
+  \sum_{ij}
+  h_{ij}b_ib_j\dg
+\end{align*}
+
+\begin{align*}
+\tikpic{
+  \labeledinteraction[white]{1}{h}{$\NO{\bm{h}}$}{(-0.75,0)}{(0,0)};
+  \background{
+    \draw[->-=0.5] (h1) to ++(0,0.5);
+    \draw[-<-=0.5] (h1) to ++(0,-0.5);
+  }
+}
+=
+\tikpic{
+  \labeledinteraction{1}{h}{$\NO{\bm{h}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (h1) to ++(0,0.5);
+    \draw[-<-=0.5] (h1) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{1}{h}{$\NO{\bm{h}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (h1) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (h1) to ++(+0.25,0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{1}{h}{$\NO{\bm{h}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (h1) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (h1) to ++(+0.25,-0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{1}{h}{$\NO{\bm{h}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[-<-=0.5] (h1) to ++(0,0.5);
+    \draw[->-=0.5] (h1) to ++(0,-0.5);
+  }
+}
+\end{align*}
+
+\begin{align*}
+  \fr{1}{4}
+  \sum_{pqrs}
+  \ip{pq||rs}
+  a_p\dg a_q\dg a_sa_r
+=&\
+  \fr{1}{4}
+  \sum_{abcd}
+  \ip{ab||cd}
+  a_a\dg a_b\dg a_da_c
++
+  \fr{1}{2}
+  \sum_{abci}
+  \ip{ab||ci}
+  a_a\dg a_b\dg a_ia_c
++
+  \fr{1}{2}
+  \sum_{aibc}
+  \ip{ai||bc}
+  a_a\dg a_i\dg a_ca_b
+\\&\
++
+  \fr{1}{4}
+  \sum_{abij}
+  \ip{ab||ij}
+  a_a\dg a_b\dg a_ja_i
++
+  \sum_{aibj}
+  \ip{ai||bj}
+  a_a\dg a_i\dg a_ja_b
++
+  \fr{1}{4}
+  \sum_{ijab}
+  \ip{ij||ab}
+  a_i\dg a_j\dg a_ba_a
+\\&\
++
+  \fr{1}{2}
+  \sum_{iajk}
+  \ip{ia||jk}
+  a_i\dg a_a\dg a_ka_j
++
+  \fr{1}{2}
+  \sum_{ijka}
+  \ip{ij||ka}
+  a_i\dg a_j\dg a_aa_k
++
+  \fr{1}{4}
+  \sum_{ijkl}
+  \ip{ij||kl}
+  a_i\dg a_j\dg a_la_k
+\\=&\
+  \fr{1}{4}
+  \sum_{abcd}
+  \ip{ab||cd}
+  b_a\dg b_b\dg b_db_c
++
+  \fr{1}{2}
+  \sum_{abci}
+  \ip{ab||ci}
+  b_a\dg b_b\dg b_i\dg b_c
++
+  \fr{1}{2}
+  \sum_{aibc}
+  \ip{ai||bc}
+  b_a\dg b_ib_cb_b
+\\&\
++
+  \fr{1}{4}
+  \sum_{abij}
+  \ip{ab||ij}
+  b_a\dg b_b\dg b_j\dg b_i\dg
++
+  \sum_{aibj}
+  \ip{ai||bj}
+  b_a\dg b_i b_j\dg b_b
++
+  \fr{1}{4}
+  \sum_{ijab}
+  \ip{ij||ab}
+  b_i b_j b_bb_a
+\\&\
++
+  \fr{1}{2}
+  \sum_{iajk}
+  \ip{ia||jk}
+  b_i b_a\dg b_k\dg b_j\dg
++
+  \fr{1}{2}
+  \sum_{ijka}
+  \ip{ij||ka}
+  b_ib_jb_ab_k\dg
++
+  \fr{1}{4}
+  \sum_{ijkl}
+  \ip{ij||kl}
+  b_ib_jb_l\dg b_k\dg
+\end{align*}
+
+\begin{align*}
+\tikpic{
+  \labeledinteraction[white]{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+=&\
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(0,0.5);
+    \draw[-<-=0.5] (g2) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,-0.5);
+  }
+}
+\\&\
++
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (g1) to ++(+0.25,0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(0,+0.5);
+    \draw[-<-=0.5] (g1) to ++(0,-0.5);
+    \draw[-<-=0.5] (g2) to ++(0,+0.5);
+    \draw[->-=0.5] (g2) to ++(0,-0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[->-=0.5] (g1) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (g1) to ++(+0.25,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,-0.5);
+  }
+}
+\\&\
++
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[-<-=0.5] (g1) to ++(0,0.5);
+    \draw[->-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[-<-=0.5] (g1) to ++(0,0.5);
+    \draw[->-=0.5] (g1) to ++(0,-0.5);
+    \draw[->-=0.5] (g2) to ++(-0.25,-0.5);
+    \draw[-<-=0.5] (g2) to ++(+0.25,-0.5);
+  }
+}
++
+\tikpic{
+  \labeledinteraction{2}{g}{$\NO{\bm{\ol{g}}}$}{(-0.75,0)}{(0,0)}
+  \background{
+    \draw[-<-=0.5] (g1) to ++(0,0.5);
+    \draw[->-=0.5] (g1) to ++(0,-0.5);
+    \draw[-<-=0.5] (g2) to ++(0,0.5);
+    \draw[->-=0.5] (g2) to ++(0,-0.5);
+  }
+}
+\end{align*}
+
+\begin{align*}
+\tikpic{
+  \labeledinteraction{2}{t}{$\bm{t}$}{(-0.75,0)}{(0,0)}
+  \labeledinteraction{2}{g}{$\bm{g}$}{(-0.75,1)}{(0,1)}
+  \background{
+    \draw[-<-=0.5,bend right] (g1) to (t1);
+    \draw[->-=0.5,bend left]  (g1) to (t1);
+    \draw[-<-=0.5,bend right] (g2) to (t2);
+    \draw[->-=0.5,bend left]  (g2) to (t2);
+  }
+}
+\end{align*}
+
+\end{document}

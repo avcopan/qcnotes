@@ -1,0 +1,852 @@
+\documentclass[11pt,fleqn]{article}
+\usepackage[cm]{fullpage}
+\usepackage{mathtools} %includes amsmath
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{xfrac}
+\usepackage{url}
+%greek letters
+\renewcommand{\a}{\alpha}    %alpha
+\renewcommand{\b}{\beta}     %beta
+\newcommand{\g}{\gamma}      %gamma
+\newcommand{\G}{\Gamma}      %Gamma
+\renewcommand{\d}{\delta}    %delta
+\newcommand{\D}{\Delta}      %Delta
+\newcommand{\e}{\varepsilon} %epsilon
+\newcommand{\ev}{\epsilon}   %epsilon*
+\newcommand{\z}{\zeta}       %zeta
+\newcommand{\h}{\eta}        %eta
+\renewcommand{\th}{\theta}   %theta
+\newcommand{\Th}{\Theta}     %Theta
+\newcommand{\io}{\iota}      %iota
+\renewcommand{\k}{\kappa}    %kappa
+\newcommand{\la}{\lambda}    %lambda
+\newcommand{\La}{\Lambda}    %Lambda
+\newcommand{\m}{\mu}         %mu
+\newcommand{\n}{\nu}         %nu %xi %Xi %pi %Pi
+\newcommand{\p}{\rho}        %rho
+\newcommand{\si}{\sigma}     %sigma
+\newcommand{\siv}{\varsigma} %sigma*
+\newcommand{\Si}{\Sigma}     %Sigma
+\renewcommand{\t}{\tau}      %tau
+\newcommand{\up}{\upsilon}   %upsilon
+\newcommand{\f}{\phi}        %phi
+\newcommand{\F}{\Phi}        %Phi
+\newcommand{\x}{\chi}        %chi
+\newcommand{\y}{\psi}        %psi
+\newcommand{\Y}{\Psi}        %Psi
+\newcommand{\w}{\omega}      %omega
+\newcommand{\W}{\Omega}      %Omega
+%ornaments
+\newcommand{\eth}{\ensuremath{^\text{th}}}
+\newcommand{\rst}{\ensuremath{^\text{st}}}
+\newcommand{\ond}{\ensuremath{^\text{nd}}}
+\newcommand{\ord}[1]{\ensuremath{^{(#1)}}}
+\newcommand{\dg}{\ensuremath{^\dagger}}
+\newcommand{\bigo}{\ensuremath{\mathcal{O}}}
+\newcommand{\tl}{\ensuremath{\tilde}}
+\newcommand{\ol}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\ul}[1]{\ensuremath{\underline{#1}}}
+\newcommand{\op}[1]{\ensuremath{\hat{#1}}}
+\newcommand{\ot}{\ensuremath{\otimes}}
+\newcommand{\wg}{\ensuremath{\wedge}}
+%text
+\newcommand{\tr}{\ensuremath{\hspace{1pt}\mathrm{tr}\hspace{1pt}}}
+\newcommand{\Alt}{\ensuremath{\mathrm{Alt}}}
+\newcommand{\sgn}{\ensuremath{\mathrm{sgn}}}
+\newcommand{\occ}{\ensuremath{\mathrm{occ}}}
+\newcommand{\vir}{\ensuremath{\mathrm{vir}}}
+\newcommand{\spn}{\ensuremath{\mathrm{span}}}
+\newcommand{\vac}{\ensuremath{\mathrm{vac}}}
+\newcommand{\bs}{\ensuremath{\text{\textbackslash}}}
+\newcommand{\im}{\ensuremath{\mathrm{im}\hspace{1pt}}}
+\renewcommand{\sp}{\hspace{30pt}}
+%dots
+\newcommand{\ld}{\ensuremath{\ldots}}
+\newcommand{\cd}{\ensuremath{\cdots}}
+\newcommand{\vd}{\ensuremath{\vdots}}
+\newcommand{\dd}{\ensuremath{\ddots}}
+\newcommand{\etc}{\ensuremath{\mathinner{\mkern-1mu\cdotp\mkern-2mu\cdotp\mkern-2mu\cdotp\mkern-1mu}}}
+%fonts
+\newcommand{\bmit}[1]{{\bfseries\itshape\mathversion{bold}#1}}
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+\newcommand{\mb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\mf}[1]{\ensuremath{\mathfrak{#1}}}
+\newcommand{\mr}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\bo}[1]{\ensuremath{\mathbf{#1}}}
+%styles
+\newcommand{\ts}{\textstyle}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\phsub}{\ensuremath{_{\phantom{p}}}}
+\newcommand{\phsup}{\ensuremath{^{\phantom{p}}}}
+%fractions, derivatives, parentheses, brackets, etc.
+\newcommand{\pr}[1]{\ensuremath{\left(#1\right)}}
+\newcommand{\brk}[1]{\ensuremath{\left[#1\right]}}
+\newcommand{\fr}[2]{\ensuremath{\dfrac{#1}{#2}}}
+\newcommand{\pd}[2]{\ensuremath{\frac{\partial#1}{\partial#2}}}
+\newcommand{\pt}{\ensuremath{\partial}}
+\newcommand{\br}[1]{\ensuremath{\langle#1|}}
+\newcommand{\kt}[1]{\ensuremath{|#1\rangle}}
+\newcommand{\ip}[1]{\ensuremath{\langle#1\rangle}}
+\newcommand{\NO}[1]{\ensuremath{{\bm{:}}#1{}{\bm{:}}}}
+\newcommand{\floor}[1]{\ensuremath{\left\lfloor#1\right\rfloor}}
+\newcommand{\ceil}[1]{\ensuremath{\left\lceil#1\right\rceil}}
+\usepackage{stackengine}
+\newcommand{\GNO}[1]{\setstackgap{S}{0.7pt}\ensuremath{\Shortstack{\textbf{.} \textbf{.} \textbf{.}}#1\Shortstack{\textbf{.} \textbf{.} \textbf{.}}}}
+\newcommand{\cmtr}[2]{\ensuremath{[\cdot,#2]^{#1}}}
+\newcommand{\cmtl}[2]{\ensuremath{[#2,\cdot]^{#1}}}
+%structures
+\newcommand{\eqn}[1]{(\ref{#1})}
+\newcommand{\ma}[1]{\ensuremath{\begin{bmatrix}#1\end{bmatrix}}}
+\newcommand{\ar}[1]{\ensuremath{\begin{matrix}#1\end{matrix}}}
+\newcommand{\miniar}[1]{\ensuremath{\begin{smallmatrix}#1\end{smallmatrix}}}
+%contractions
+\usepackage{simplewick}
+\usepackage[nomessages]{fp}
+\newcommand{\ctr}[6][0]{\FPeval\height{0.6+#1*0.5}\ensuremath{\contraction[\height ex]{#2}{#3}{#4}{#5}}}
+\newcommand{\ccr}[4]{\ctr[0.7]{#1}{#2}{#3}{#4}{}\ctr{#1}{#2}{#3}{#4}}
+\usepackage{calc}
+\makeatletter
+\def\@hspace#1{\begingroup\setlength\dimen@{#1}\hskip\dimen@\endgroup}
+\makeatother
+\newcommand{\halfphantom}[1]{\hspace{\widthof{#1}*\real{0.5}}}
+\newcommand{\fullctr}[1]{\ensuremath{\contraction[0.5ex]{}{\vphantom{#1}}{\hphantom{#1}}{}{}{}\contraction[0.5ex]{}{\vphantom{#1}}{\halfphantom{#1}}{}{}{}#1}}
+%math sections
+\usepackage{cleveref}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\declaretheoremstyle[spaceabove=10pt,spacebelow=10pt,bodyfont=\small]{mystyle}
+\theoremstyle{mystyle}
+\newtheorem{dfn}{Definition}[section]
+\crefname{dfn}{definition}{definitions}
+\Crefname{dfn}{Def}{Defs}
+\newtheorem{thm}{Theorem}[section]
+\crefname{thm}{theorem}{theorems}
+\Crefname{thm}{Thm}{Thms}
+\newtheorem{cor}{Corollary}[section]
+\crefname{cor}{corollary}{corollaries}
+\Crefname{cor}{Cor}{Cors}
+\newtheorem{lem}{Lemma}[section]
+\crefname{lem}{lemma}{lemmas}
+\Crefname{lem}{Lem}{Lems}
+\newtheorem{rmk}{Remark}[section]
+\crefname{rmk}{remark}{remarks}
+\Crefname{rmk}{Rmk}{Rmks}
+\newtheorem{pro}{Proposition}[section]
+\crefname{pro}{proposition}{propositions}
+\Crefname{pro}{Prop}{Props}
+\newtheorem{ntt}{Notation}[section]
+\crefname{ntt}{notation}{notations}
+\Crefname{ntt}{Notation}{Notations}
+\newcommand{\logbox}{\ensuremath{\text{\makebox[\widthof{exp}][c]{ln}}}}
+\newcommand{\expbox}{\ensuremath{\text{\makebox[\widthof{exp}][c]{exp}}}}
+
+\numberwithin{equation}{section}
+\usepackage{cancel}
+\usepackage{scrextend}
+
+\newcommand{\hole}{\circ}
+\newcommand{\ptcl}{\bullet}
+\newcommand{\circled}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt}{#1}}}}
+
+
+
+\author{Andreas V. Copan}
+\date{}
+\title{Fock space algebraic methods:\\Normal ordering with respect to $\Y$}
+
+%%%DOCUMENT%%%
+\begin{document}
+
+\maketitle
+
+\section{Moments and cumulants}
+
+\subsection{Moments and cumulants in classical statistics}
+
+\begin{dfn}
+\label{moments-dfn}
+\bmit{Moments of commuting random variables.}
+Given a set $\{q_i\}$ of commuting random variables, their \textit{moments} $\g(q_{i_1}\cd q_{i_n})$ are defined as
+\begin{align}
+\label{moments}
+&&
+  \g(q_{i_1}\cd q_{i_n})
+=
+  \ip{q_{i_1}\cd q_{i_n}}
+\end{align}
+where $\ip{X}$ represents an expecation value.
+\end{dfn}
+
+\begin{rmk}
+\label{classical-moment-expansion}
+\bmit{Expectation values from moments.}
+Given a complete set of moments $\{\g(q_{i_1}\cd q_{i_n})\}$, the expectation value of any analytic function $f(q_i)$ of the random variables can be obtained as
+\begin{align}
+&&
+  \ip{f(q_i)}
+=
+  f(0)
++
+  \sum_n
+  \fr{1}{n!}
+  \sum_{i_1\cd i_n}
+  \left.
+  \pd{^n f}{q_{i_1}\cd \pt q_{i_n}}
+  \right|_{q_i=0}
+  \g(q_{i_1}\cd q_{i_n})
+\end{align}
+which results from expanding $f(q_i)$ in a Taylor series, noting that the expectation value is linear, and applying \Cref{moments-dfn}.
+Here and below, sums $\sum_n$ without specified ranges should be taken to run from $1$ to $\infty$.
+\end{rmk}
+
+\begin{dfn}
+\bmit{Moment and cumulant generating functions of commuting random variables.}
+Given a set $\{q_i\}$ of commuting random variables, its \textit{moment-generating function}, $M(\bm\a)$, and its \textit{cumulant-generating function}, $K(\bm\a)$, are defined as
+\begin{align}
+\label{classical-mgf}
+&
+  M(\bm\a)
+\equiv
+  \ip{e^{\sum_i\a_i q_i}}
+&&
+  M(\bm\a)
+=
+  1
++
+  \sum_n
+  \sum_{i_1\cd i_n}
+  \fr{\a_{i_1}\cd \a_{i_n}}{n!}
+  \g(q_{i_1}\cd q_{i_n})
+\\
+\label{classical-cgf}
+&
+  K(\bm\a)
+\equiv
+  \ln M(\bm\a)
+=
+  \ln \ip{e^{\sum_i\a_i q_i}}
+&&
+  K(\bm\a)
+=
+  0
++
+  \sum_n
+  \sum_{i_1\cd i_n}
+  \fr{\a_{i_1}\cd \a_{i_n}}{n!}
+  \la(q_{i_1}\cd q_{i_n})
+\end{align}
+where $\g(q_{i_1}\cd q_{i_n})$ and $\la(q_{i_1}\cd q_{i_n})$ are (respectively) the \textit{moments} and \textit{cumulants} that they generate.
+The moments and cumulants are obtained from $M(\bm\a)$ and $K(\bm\a)$ via
+\begin{align}
+&
+  \g(q_{i_1}\cd q_{i_n})
+\equiv
+  \left.
+  \pd{^n M(\bm\a)}{\a_{i_1}\cd\pt\a_{i_n}}
+  \right|_{\bm\a=0}
+&&
+  \la(q_{i_1}\cd q_{i_n})
+\equiv
+  \left.
+  \pd{^n K(\bm\a)}{\a_{i_1}\cd\pt\a_{i_n}}
+  \right|_{\bm\a=0}
+\end{align}
+as can be seen from equations \ref{classical-mgf} and \ref{classical-cgf}.
+\end{dfn}
+
+\begin{pro}
+\label{moment-cumulant-relations-classical}
+\bmit{Moment-cumulant relations of commuting random variables.}
+\textit{The moments and cumulants of a set $\{q_i\}$ of commuting random variables are related via
+\begin{align}
+&
+  \g(q_{i_1}\cd q_{i_n})
+=
+  \sum_{k=1}^n
+  \sum_{(Q_1\etc Q_k)}^{\mc{P}_k(q_{i_1}\etc q_{i_n})}
+  \la(Q_1)\etc\la(Q_k)
+\\
+&
+  \la(q_{i_1}\cd q_{i_n})
+=
+  \sum_{k=1}^n
+  (-)^{k+1}
+  (k-1)!
+  \sum_{(Q_1\etc Q_k)}^{\mc{P}_k(q_{i_1}\etc q_{i_n})}
+  \g(Q_1)\etc\g(Q_k)
+\end{align}
+where $(Q_1,\ld,Q_k)\in\mc{P}_k(q_{i_1}\cd q_{i_n})$ are unique $k$-tuple partitions of the product $q_{i_1}\cd q_{i_n}$.}\footnote{These ``product partitions'' are simply set partitions with each set of operators mapped to their product.}
+\begin{addmargin}[1em]{0em}
+Proof: See \Cref{moment-cumulant-relations-general}.
+\end{addmargin}
+\end{pro}
+
+
+
+\subsection{Moments and cumulants of particle-hole operators}
+
+\begin{rmk}
+\bmit{Motivating the form of $M(\bm\a)$ for particle-hole operators.}
+Just as the expectation value of a function of classical random variables can be obtained from its moment expansion (see \Cref{classical-moment-expansion}), the expectation value of the electronic Hamiltonian can be obtained from $\g(a_q^p)$ and $\g(a_{rs}^{pq})$ as
+\begin{align*}
+&&
+  E_e
+=
+  \ip{H_e(a^p,a_q)}
+=
+  h_p^q \g(a_q^p)
++
+  \tfrac{1}{4}
+  g_{pq}^{rs} \g(a_{rs}^{pq})\ .
+\end{align*}
+where the expectation value is $\ip{\cdot}=\ip{\Y|\cdot|\Y}$, the random variables are $\{q_i\}=\{a_p\}\cup\{a^p\}$, and the moments are $\g(q_{i_1}\cd q_{i_n})=\ip{\Y|q_{i_1}\cd q_{i_n}|\Y}$.
+However, the derivatives of $\ip{\Y|e^{\sum_i\a_iq_i}|\Y}$ do not generate $\g(q_1\cd q_n)$ because the $q_i$ do not commute.
+Noting that the operator products defining $H_e$ are in \vac-normal order, we can generate the moments we need by normal-ordering the exponential in the moment generating function.
+\begin{align}
+\label{moment-motivation}
+&&
+  M(\bm\a)
+\equiv
+  \ip{\Y|\NO{e^{\sum_i\a_iq_i}}|\Y}
+=
+  1
++
+  \sum_n\sum_{i_1\cd i_n}\frac{\a_{i_1}\cd\a_{i_n}}{n!}
+  \ip{\Y|\NO{q_{i_1}\cd a_{i_n}}|\Y}
+\end{align}
+However, the relation
+$
+  \pd{^nM(\bm\a)}{\a_{i_1}\cd\pt\a_{i_n}}
+=
+  \ip{\Y|\NO{q_{i_1}\cd q_{i_n}}|\Y}
+$
+still does not hold if we take $\bm\a$ to consist of ordinary $\mb{C}$-numbers.
+Instead, the fact that $\NO{q_{i_1}\cd q_{i_n}}$ is antisymmetric under index permutation requires that the probe variable derivatives anticommute:
+$
+  \pd{^nM(\bm\a)}{\a_{i_1}\cd\pt\a_{i_n}}
+=
+  \e_\pi\pd{^nM(\bm\a)}{\a_{i_{\pi(1)}}\cd\pt\a_{i_{\pi(n)}}}
+$.
+This is a known property of the so-called \textit{Grassmann numbers} used in Fermion counting statistics.   (See Cahill and Glauber, \textit{Phys.~Rev.~A}, \textbf{59}, 1538 (1999) for more details).
+\end{rmk}
+
+\begin{dfn}
+\bmit{Grassmann numbers.}
+A system of particle-hole operators $\{q_i\}$ can be associated with a set of \textit{Grassmann numbers} which are defined to satisfy $[\a_i,\a_j]_+=[\a_i,q_j]_+=0$, i.e. they anticommute among themselves and with all particle-hole operators.
+Consistency demands that derivatives with respect to Grassmann-valued variables also anticommute, i.e. $[\pd{}{\a_i},\pd{}{\a_j}]_+=0$, so that $\pd{}{\a_i}\pd{}{\a_j}\a_j\a_i=\pd{}{\a_i}\a_i=1$.
+\end{dfn}
+
+\begin{dfn}
+\bmit{Density moment and density cumulant generating functions.}
+The \textit{moment-generating function}, $M(\bm\a)$, and \textit{cumulant-generating function}, $K(\bm\a)$, of the particle-hole operators is given by
+\begin{align}
+&
+  M(\bm\a)
+\equiv
+  \ip{\Y|\NO{e^{\sum_i\a_i q_i}}|\Y}
+&&
+  M(\bm\a)
+=
+  1
++
+  \sum_n
+  \sum_{i_1\cd i_n}
+  \fr{\a_{i_1}\cd \a_{i_n}}{n!}
+  \g(q_{i_1}\cd q_{i_n})
+\\
+&
+  K(\bm\a)
+\equiv
+  \ln M(\bm\a)
+=
+  \ln \ip{\Y|\NO{e^{\sum_i\a_i q_i}}|\Y}
+&&
+  K(\bm\a)
+=
+  0
++
+  \sum_n
+  \sum_{i_1\cd i_n}
+  \fr{\a_{i_1}\cd \a_{i_n}}{n!}
+  \la(q_{i_1}\cd q_{i_n})
+\end{align}
+where $\bm\a$ consists of Grassmann variables.
+The \textit{moments} and \textit{cumulants} are obtained from their generating functions as 
+\begin{align}
+&
+  \g(q_{i_1}\cd q_{i_n})
+\equiv
+  \left.
+  \pd{^n M(\bm\a)}{\a_{i_n}\cd\pt\a_{i_1}}
+  \right|_{\bm\a=0}
+&&
+  \la(q_{i_1}\cd q_{i_n})
+\equiv
+  \left.
+  \pd{^n K(\bm\a)}{\a_{i_n}\cd\pt\a_{i_1}}
+  \right|_{\bm\a=0}
+\end{align}
+These are sometimes called \textit{density moments} and \textit{density cumulants} since they characterize the distribution of the electronic density matrix, $\kt{\Y}\br{\Y}$.
+\end{dfn}
+
+\begin{pro}
+\label{moment-cumulant-relations-quantum}
+\bmit{Density moment-cumulant relations.}
+\textit{The density moments and cumulants are related via
+\begin{align}
+\label{moments-from-cumulants-quantum}
+&
+  \g(q_{i_1}\cd q_{i_n})
+=
+  \sum_{k=1}^n
+  \sum_{(Q_1\etc Q_k)}^{\mc{P}_k(q_{i_1}\etc q_{i_n})}
+  (-)^{n_{\bo{Q}}}
+  \la(Q_1)\etc\la(Q_k)
+\\
+\label{cumulants-from-moments-quantum}
+&
+  \la(q_{i_1}\cd q_{i_n})
+=
+  \sum_{k=1}^n
+  (-)^{k+1}
+  (k-1)!
+  \sum_{(Q_1\etc Q_k)}^{\mc{P}_k(q_{i_1}\etc q_{i_n})}
+  (-)^{n_{\bo{Q}}}
+  \g(Q_1)\etc\g(Q_k)
+\end{align}
+where $(Q_1,\ld,Q_k)\in\mc{P}_k(q_{i_1}\cd q_{i_n})$ are unique $k$-tuple partitions of the product $q_{i_1}\cd q_{i_n}$.
+The operators within each block $Q_i$ of the partition are taken to appear in the same order as they do in the original product, and $n_{\bo{Q}}$ is the number of transpositions required to turn $q_{i_1}\cd q_{i_n}$ into $Q_1\cd Q_k$.}
+\begin{addmargin}[1em]{0em}
+Proof: See \Cref{moment-cumulant-relations-general}.
+\end{addmargin}
+\end{pro}
+
+
+\section{$\Y$-normal ordering}
+
+\begin{dfn}
+\bmit{Generalized contractions.}
+\textit{Generalized contractions} are scalar functions of the particle-hole operators
+\begin{align*}
+&&
+\{
+  \ol{q}_{i_1},\
+  \ctr{}{q}{_{i_1}}{q}{_{i_2}}
+         q_{i_1}q_{i_2},\
+  \ctr{}{q}{_{i_1}}{q}{_{i_2}q_{i_3}}
+  \ctr{}{q}{_{i_1}q_{i_2}}{q}{_{i_3}}
+         q_{i_1}q_{i_2}q_{i_3},\
+  \ctr{}{q}{_{i_1}}{q}{_{i_2}q_{i_3}q_{i_4}}
+  \ctr{}{q}{_{i_1}q_{i_2}}{q}{_{i_3}q_{i_4}}
+  \ctr{}{q}{_{i_1}q_{i_2}q_{i_3}}{q}{_{i_4}}
+         q_{i_1}q_{i_2}q_{i_3}q_{i_4},\ld
+\}
+\end{align*}
+i.e. each $n$-tuple contraction
+$ \ctr{}{q}{_{i_1}}{q}{_{i_2}\etc q_{i_n}}
+  \ctr{}{q}{_{i_1}q_{i_2}\etc}{q}{_{i_n}}
+  q_{i_1}q_{i_2}\etc q_{i_n}$
+associates a scalar value with the ordered list of operators $(q_{i_1}, q_{i_2}, \ld, q_{i_n})$.
+\end{dfn}
+
+\begin{dfn}
+\label{gno}
+\bmit{$\Y$-normal order and $\Y$-normal contractions.}
+The \textit{$\Y$-normal order} for particle-hole operator strings $Q$ is defined as
+\begin{align*}
+&&
+  \GNO{Q}
+\equiv
+  Q
+-
+  \GNO{\ol{Q}}
+\end{align*}
+where the generalized contractions are chosen such that $\ip{\Y|\GNO{q_1\etc q_n}|\Y}=0$ for all $n$.
+The sets of generalized contractions satisfying these conditions are called \textit{$\Y$-normal contractions}.
+\end{dfn}
+
+\begin{pro}
+\label{odd-contractions-vanish}
+\bmit{Odd contractions vanish.}
+\textit{For odd $n$, $\ctr{}{q}{_{i_1}}{q}{_{i_2}\etc q_{i_n}}\ctr{}{q}{_{i_1}q_{i_2}\etc}{q}{_{i_n}}q_{i_1}q_{i_2}\etc q_{i_n}=0$ if this is a $\Y$-normal contraction and $\Y$ has a fixed particle number.}
+\begin{addmargin}[1em]{0em}
+Proof:
+Applying \Cref{wick-vacuum-expectation} to a single particle-hole operator, we have $\ol{q}=\ip{\Y|q|\Y}=0$ since $\Y$ has a definite particle number.\footnote{Each $\mb{A}(\mc{H}^{\otimes n})\subset F(\mc{H})$ forms an orthogonal subspace of $F(\mc{H})$.}
+Now, assume the conclusion holds for odd $n$ and consider the $(n+2)$-tuple contraction $\ctr{}{q}{_{i_1}}{q}{_{i_2}\etc q_{i_n}}\ctr{}{q}{_{i_1}q_{i_2}\etc}{q}{_{i_n}}q_{i_1}q_{i_2}\etc q_{i_{n+2}}$.
+By \Cref{wick-vacuum-expectation} we have $\ip{\Y|q_{i_1}\etc q_{i_{n+2}}|\Y}=\ol{\ol{q_{i_1}\etc q_{i_{n+2}}}}{\ }'+\ctr{}{q}{_{i_1}}{q}{_{i_2}\etc q_{i_n}}\ctr{}{q}{_{i_1}q_{i_2}\etc}{q}{_{i_n}}q_{i_1}q_{i_2}\etc q_{i_{n+2}}$ where the prime indicates that the $(n+2)$-tuple contraction has been separated out.
+Since $\Y$ has a definite particle number, we have $\ip{\Y|q_{i_1}\etc q_{i_{n+2}}|\Y}=0$.
+Furthermore, every term in $\ol{\ol{q_{i_1}\etc q_{i_{n+2}}}}{\ }'$ must involve an odd contraction of order $n$ or less in order to fully contract the product, which means that this term vanishes as well.
+This leaves $\ctr{}{q}{_{i_1}}{q}{_{i_2}\etc q_{i_n}}\ctr{}{q}{_{i_1}q_{i_2}\etc}{q}{_{i_n}}q_{i_1}q_{i_2}\etc q_{i_{n+2}}=0$, so the conclusion holds in general.
+\end{addmargin}
+\end{pro}
+
+
+\subsection{Generalized Wick's theorem}
+
+\begin{lem}
+\label{psi-expectation-partitions}
+\textit{The $\Y$ expectation value of a string $Q$ of particle-hole operators is given by
+\begin{align}
+&&
+  \ip{\Y|Q|\Y}
+=
+  \sum_{(Q_1\cd Q_k)}^{\mc{P}(Q)}(-)^{n_\bo{Q}}\ \fullctr{Q}_1\etc\fullctr{Q}_k
+\end{align}
+where $\fullctr{Q}$ represents
+$ \ctr{}{q}{_{i_1}}{q}{_{i_2}\etc q_{i_n}}
+  \ctr{}{q}{_{i_1}q_{i_2}\etc}{q}{_{i_n}}
+  q_{i_1}q_{i_2}\etc q_{i_n}$, a contraction of all of the operators in $Q$, and $\mc{P}(Q)$ are product partitions of $Q$.  $n_\bo{Q}$ is the number of transpositions required to achieve the permutation $Q\mapsto Q_1\cd Q_k$.}
+\begin{addmargin}[1em]{0em}
+Proof: By \Cref{wick-vacuum-expectation}, we have $\ip{\Y|Q|\Y}=\ol{\ol{Q}}$.
+Furthermore, each complete contraction of $Q$ partitions of its operators into disjoint subsets $(Q_1,\ld,Q_k)$ of operators that are contracted with each other.
+Finally, disentangling the contracted product is achieved by a permutation which places contraction partners adjacent to each other, i.e. $Q\mapsto Q_1\cd Q_k$.
+The signature of such a permutation, $(-)^{n_{\bo{Q}}}$, is unambiguous because odd contractions vanish (see \Cref{odd-contractions-vanish}).
+Therefore, $\ip{\Y|Q|\Y}=\ol{\ol{Q}}=\sum_{\bo{Q}}^{\mc{P}(Q)}(-)^{n_\bo{Q}}\ \fullctr{Q}_1\etc\fullctr{Q}_k$.
+\end{addmargin}
+\end{lem}
+
+\begin{thm}
+\label{generalized-wicks-theorem}
+\bmit{Generalized Wick's theorem.}
+\textit{Any operator $Q$ which is in \vac-normal order $(\NO{})$ can be expanded as
+\begin{align}
+\label{psi-normal-wick-expansion}
+&&
+  Q
+=
+  \GNO{Q}
++
+  \GNO{\ol{Q}}
+\end{align}
+where $\GNO{}$ inticates a $\Y$-normal-ordered product and the generalized $\Y$-normal contractions are cumulants. That is,
+\begin{align}
+\label{cumulant-contraction}
+&&
+  \ctr{}{q}{_{i_1}}{q}{_{i_2}\etc q_{i_n}}\ctr{}{q}{_{i_1}q_{i_2}\etc}{q}{_{i_n}}
+  q_{i_1}q_{i_2}\etc q_{i_n}
+=
+  \la(q_{i_1}\cd q_{i_n})
+\end{align}
+for each $n$-tuple contraction in $\GNO{\ol{Q}}$.}
+\begin{addmargin}[1em]{0em}
+Proof:
+Equation \ref{psi-normal-wick-expansion} is required by \Cref{gno}, so it remains to be proven that the $\Y$-normal contractions are cumulants.
+The theorem holds for $n=2$ since
+$
+  \ip{\Y|q_{i_1}q_{i_2}|\Y}
+=
+  \ctr{}{q}{_{i_1}}{q}{_{i_2}}
+  q_{i_1}q_{i_2}
+$
+follows from \Cref{psi-expectation-partitions} and
+$
+  \ip{\Y|q_{i_1}q_{i_2}|\Y}
+=
+  \g(q_{i_1}q_{i_2})
+=
+  \la(q_{i_1}q_{i_2})
+$
+by \Cref{moment-cumulant-meeting}.
+Now, assume it holds for all contractions up to $n$ and consider $\fullctr{Q}$ for $Q$ of length $n$.
+By \Cref{psi-expectation-partitions}, we have
+\begin{align*}
+  \ip{\Y|Q|\Y}
+=
+  \g(Q)
+=
+  \fullctr{Q}
++
+  \sum_{k=1}^{n-1}
+  \sum_{(Q_1\cd Q_k)}^{\mc{P}_k(Q)}
+  (-)^{n_\bo{Q}}\ \fullctr{Q}_1\etc\fullctr{Q}_k
+\end{align*}
+which gives
+\begin{align*}
+  \fullctr{Q}
+=
+  \g(Q)
+-
+  \sum_{k=1}^{n-1}
+  \sum_{(Q_1\cd Q_k)}^{\mc{P}_k(Q)}
+  (-)^{n_\bo{Q}}\ \la(Q_1)\cd\la(Q_k)
+\end{align*}
+which implies $\fullctr{Q}=\la(Q)$ from the moment-cumulant relations (\Cref{moment-cumulant-relations-quantum}, equation \ref{moments-from-cumulants-quantum}).
+By induction, the claim holds for all $n$.
+\end{addmargin}
+\end{thm}
+
+
+
+\newpage
+\appendix
+
+\section{Derivation of the moment-cumulant relations}
+
+\begin{pro}
+\label{moment-cumulant-relations-general}
+\bmit{Moment-cumulant relations (general).}
+\textit{The moments and cumulants of a set $\{q_i\}$ of random variables are related via
+\begin{align}
+&
+  \g(q_{i_1}\cd q_{i_n})
+=
+  \sum_{k=1}^n
+  \sum_{(Q_1\etc Q_k)}^{\mc{P}_k(q_{i_1}\etc q_{i_n})}
+  (-)^{m\cdot n_\bo{Q}}
+  \la(Q_1)\etc\la(Q_k)
+\\
+&
+  \la(q_{i_1}\cd q_{i_n})
+=
+  \sum_{k=1}^n
+  (-)^{k+1}
+  (k-1)!
+  \sum_{(Q_1\etc Q_k)}^{\mc{P}_k(q_{i_1}\etc q_{i_n})}
+  (-)^{m\cdot n_\bo{Q}}
+  \g(Q_1)\etc\g(Q_k)
+\end{align}
+where $m=0$ for commuting random variables and $m=1$ for particle-hole operators.}
+\begin{addmargin}[1em]{0em}
+Proof:
+The generating functions are
+\begin{align*}
+&
+  M(\bm\a)
+=
+  \expbox K(\bm\a)
+=
+  1
++
+  \sum_n
+  \sum_{i_1\cd i_n}
+  \fr{\a_{i_1}\cd \a_{i_n}}{n!}
+  \g(q_{i_1}\cd q_{i_n})
+\\
+&
+  K(\bm\a)
+=
+  \logbox M(\bm\a)
+=
+  0
++
+  \sum_n
+  \sum_{i_1\cd i_n}
+  \fr{\a_{i_1}\cd \a_{i_n}}{n!}
+  \la(q_{i_1}\cd q_{i_n})
+\end{align*}
+where $\{\a_i\}$ are either ordinary numbers or Grassmann numbers.
+Defining
+$
+  b_n
+\equiv
+  \sum_{i_1\cd i_n} \frac{\a_{i_1}\cd\a_{i_n}}{n!}\g(q_{i_1}\cd q_{i_n})
+$
+and
+$
+  c_n
+\equiv
+  \sum_{i_1\cd i_n} \frac{\a_{i_1}\cd\a_{i_n}}{n!}\la(q_{i_1}\cd q_{i_n})
+$,
+and Taylor expansion coefficients $T_k^{\expbox}=\frac{1}{k!}$ and $T_k^{\logbox}=\frac{(-)^{k+1}}{k}$, these can be expanded as
+\begin{align*}
+&
+  M(\bm\a)
+=
+  \expbox(0+\sum_n c_n)
+=
+  1
++
+  \sum_k
+  T_k^{\expbox}
+  \sum_{n_1\cd n_k}
+  c_{n_1}\cd c_{n_k}
+\\
+&
+  K(\bm\a)
+=
+  \logbox(1+\sum_n b_n)
+=
+  0
++
+  \sum_k
+  T_k^{\logbox}
+  \sum_{n_1\cd n_k}
+  b_{n_1}\cd b_{n_k}\ .
+\end{align*}
+To group terms in the summation in powers of the $\a_i$, the summations can be re-ordered using
+\begin{align*}
+  \sum_k
+  \sum_{n_1\cd n_k}
+  \a^{n_1+\cd+n_k}
+  f_{n_1}\cd f_{n_k}
+=
+  \sum_n
+  \sum_{k=1}^n
+  \sum_{(n_1\cd n_k)}^{\mc{C}_k(n)}
+  \a^n
+  f_{n_1}\cd f_{n_k}
+=
+  \sum_n
+  \sum_{k=1}^n
+  k!
+  \sum_{(n_1\cd n_k)}^{\mc{P}_k(n)}
+  \a^n
+  f_{n_1}\cd f_{n_k}
+\end{align*}
+where $\mc{C}_k(n)$ and $\mc{P}_k(n)$ are $k$-tuple integer compositions and partitions (respectively) of $n$.
+That is, each $(n_1\cd n_k)$ is a tuple of positive integers less than $n$ such that $\sum_{i=1}^k n_i=n$.  $\mc{C}_k(n)$ counts different orderings separately.\footnote{Example: the \textit{partitions} of 3 are $\mc{P}(3)=\{(3),(2\ 1),(1\ 1\ 1)\}$ and its \textit{compositions} are $\mc{C}(3)=\{(3),(2\ 1),(1\ 2),(1\ 1\ 1)\}$.
+The \textit{2-tuple partitions} of 3 are $\mc{P}_2(3)=\{(2\ 1)\}$ and its \textit{2-tuple compositions} are $\mc{C}_2(3)=\{(2\ 1),(1\ 2)\}$.}
+This rearrangement gives
+\begin{align*}
+&
+  M(\bm\a)
+=
+  1
++
+  \sum_n
+  \sum_{k=1}^n
+  k! T_k^{\expbox}
+  \sum_{(n_1\cd n_k)}^{\mc{P}_k(n)}
+  c_{n_1}\cd c_{n_k}
+\\
+&
+  K(\bm\a)
+=
+  0
++
+  \sum_n
+  \sum_{k=1}^n
+  k! T_k^{\logbox}
+  \sum_{(n_1\cd n_k)}^{\mc{P}_k(n)}
+  b_{n_1}\cd b_{n_k}
+\end{align*}
+and expanding each $b_{n_i}$ and $c_{n_i}$ produces
+\begin{align*}
+&
+  M(\bm\a)
+=
+  1
++
+  \sum_n
+  \sum_{i_1\cd i_n}
+  \a_{i_1}\cd \a_{i_n}
+  \sum_{k=1}^n
+  k! T_k^{\expbox}
+  \sum_{(n_1\cd n_k)}^{\mc{P}_k(n)}
+  \fr{1}{n_1!\cd n_k!}
+  \la(q_{i_1}\cd q_{i_{n_1}})\cd\la(q_{i_{n-n_k+1}}\cd q_{i_n})
+\\
+&
+  K(\bm\a)
+=
+  0
++
+  \sum_n
+  \sum_{i_1\cd i_n}
+  \a_{i_1}\cd \a_{i_n}
+  \sum_{k=1}^n
+  k! T_k^{\logbox}
+  \sum_{(n_1\cd n_k)}^{\mc{P}_k(n)}
+  \fr{1}{n_1!\cd n_k!}
+  \g(q_{i_1}\cd q_{i_{n_1}})\cd\g(q_{i_{n-n_k+1}}\cd q_{i_n})\ .
+\end{align*}
+Taking derivatives with respect to the generator arguments, we find
+\begin{align*}
+&
+  \left.
+  \pd{^n M(\bm\a)}{\a_{i_n}\cd\pt\a_{i_1}}
+  \right|_{\bm\a=0}
+=
+  \sum_{k=1}^n
+  k! T_k^{\expbox}
+  \sum_{(n_1\cd n_k)}^{\mc{P}_k(n)}
+  \fr{1}{n_1!\cd n_k!}
+  \sum_{\pi}^{\mr{S}_n}
+  \e_\pi^m
+  \la(q_{i_{\pi(1)}}\cd q_{i_{\pi(n_1)}})\cd\la(q_{i_{\pi(n-n_k+1)}}\cd q_{i_{\pi(n)}})
+\\
+&
+  \left.
+  \pd{^n K(\bm\a)}{\a_{i_n}\cd\pt\a_{i_1}}
+  \right|_{\bm\a=0}
+=
+  \sum_{k=1}^n
+  k! T_k^{\logbox}
+  \sum_{(n_1\cd n_k)}^{\mc{P}_k(n)}
+  \fr{1}{n_1!\cd n_k!}
+  \sum_{\pi}^{\mr{S}_n}
+  \e_\pi^m
+  \g(q_{i_{\pi(1)}}\cd q_{i_{\pi(n_1)}})\cd\g(q_{i_{\pi(n-n_k+1)}}\cd q_{i_{\pi(n)}})
+\end{align*}
+where $m=0$ when the $\a_i$ are ordinary variables and $m=1$ when they are Grassmann variables.
+The summations over integer partitions can be re-written in terms of product partitions of $q_{i_1}\cd q_{i_n}$, defined by analogy with set partitions.
+\begin{align*}
+  \sum_{(n_1\cd n_k)}^{\mc{P}_k(n)}
+  \fr{1}{n_1!\cd n_k!}
+  \sum_{\pi}^{\mr{S}_n}
+  \e_\pi^m
+  f(q_{i_{\pi(1)}}\cd q_{i_{\pi(n_1)}})\cd f(q_{i_{\pi(n-n_k+1)}}\cd q_{i_{\pi(n)}})
+=
+  \sum_{(Q_1\cd Q_k)}^{\mc{P}_k(q_{i_1}\cd q_{i_n})}
+  (-)^{m\cdot n_\bo{Q}}
+  f(Q_1)\cd f(Q_k)
+\end{align*}
+This comes from the fact that for each product $f(q_{i_{\pi(1)}}\cd q_{i_{\pi(n_1)}})\cd f(q_{i_{\pi(n-n_k+1)}}\cd q_{i_{\pi(n)}})$ there are exactly $n_1!\cd n_k!$ permutations of the operators within each argument, and these terms are equal (up to a phase factor).
+These symmetries of $\g$ and $\la$ come from the fact that $\ds\pd{^n}{\a_1\cd \pt\a_n}=\e_\pi^m\pd{^n}{\a_{\pi(1)}\cd \pt\a_{\pi(n)}}$ for all $\pi\in\mr{S}_n$.
+This rearrangement leaves
+\begin{align*}
+&
+  \left.
+  \pd{^n M(\bm\a)}{\a_{i_n}\cd\pt\a_{i_1}}
+  \right|_{\bm\a=0}
+=
+  \sum_{k=1}^n
+  k! T_k^{\expbox}
+  \sum_{(Q_1\cd Q_k)}^{\mc{P}_k(q_{i_1}\cd q_{i_n})}
+  (-)^{m\cdot n_\bo{Q}}
+  \la(Q_1)\cd \la(Q_k)
+\\
+&
+  \left.
+  \pd{^n K(\bm\a)}{\a_{i_n}\cd\pt\a_{i_1}}
+  \right|_{\bm\a=0}
+=
+  \sum_{k=1}^n
+  k! T_k^{\logbox}
+  \sum_{(Q_1\cd Q_k)}^{\mc{P}_k(q_{i_1}\cd q_{i_n})}
+  (-)^{m\cdot n_\bo{Q}}
+  \g(Q_1)\cd \g(Q_k)
+\end{align*}
+which, on plugging in $k!T_k^{\logbox}=(-)^{k+1}(k-1)!$ and $k!T_k^{\expbox}=1$, gives the final result:
+\begin{align*}
+&
+  \g(q_{i_1}\cd q_{i_n})
+\equiv
+  \left.
+  \pd{^n M(\bm\a)}{\a_{i_n}\cd\pt\a_{i_1}}
+  \right|_{\bm\a=0}
+=
+  \sum_{k=1}^n
+  \sum_{(Q_1\cd Q_k)}^{\mc{P}_k(q_{i_1}\cd q_{i_n})}
+  (-)^{m\cdot n_\bo{Q}}
+  \la(Q_1)\cd \la(Q_k)
+\\
+&
+  \la(q_{i_1}\cd q_{i_n})
+\equiv
+  \left.
+  \pd{^n K(\bm\a)}{\a_{i_n}\cd\pt\a_{i_1}}
+  \right|_{\bm\a=0}
+=
+  \sum_{k=1}^n
+  (-)^{k+1}(k-1)!
+  \sum_{(Q_1\cd Q_k)}^{\mc{P}_k(q_{i_1}\cd q_{i_n})}
+  (-)^{m\cdot n_\bo{Q}}
+  \g(Q_1)\cd \g(Q_k)\ .
+\end{align*}
+\end{addmargin}
+\end{pro}
+
+
+\end{document}
