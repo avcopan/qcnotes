@@ -1,0 +1,122 @@
+\documentclass[11pt]{article}
+\usepackage[cm]{fullpage}
+\usepackage{amsmath}
+
+\begin{document}
+
+\paragraph{Newton-Raphson step.}
+Quadratic expansion
+\[
+    E_*
+    \approx
+    E
+    +
+    \Delta\mathbf{x}_*^\mathrm{t}
+    \mathbf{g}
+    +
+    \tfrac{1}{2}
+    \Delta\mathbf{x}_*^\mathrm{t}
+    \mathbf{H}
+    \Delta\mathbf{x}_*
+    \qquad
+    \mathbf{x}_*
+    \equiv
+    \mathbf{x}
+    +
+    \Delta\mathbf{x}_*
+\]
+Linear gradient expansion
+\[
+    \mathbf{g}_*
+    =
+    \mathbf{g}
+    +
+    \mathbf{H}
+    \Delta\mathbf{x}_*
+\]
+Setting the gradient at the next point to zero gives the Newton-Raphson step
+\[
+    \mathbf{g}_*
+    \overset{!}{=}
+    \mathbf{0}
+    \implies
+    \Delta\mathbf{x}_*
+    =
+    -
+    \mathbf{H}^{-1}
+    \mathbf{g}
+\]
+For a perfectly quadratic surface, the Hessian is constant and the
+Newton-Raphson step takes us directly to the stationary point.
+On a surface with cubic and higher-order terms, this step can be repeated
+iteratively until we are close enough to the stationary point that the region
+separating us from it is approximately quadratic.
+
+
+\paragraph{Quasi-Newton condition.}
+For points
+\(
+    \mathbf{x}
+\)
+and
+\(
+    \mathbf{x}_0
+\)
+sharing a locally quadratic region with each other, the change in the gradient
+between them is described by the following.
+\[
+    \mathbf{H}
+    \Delta\mathbf{x}
+    \approx
+    \mathbf{H}_0
+    \Delta\mathbf{x}
+    \approx
+    \Delta\mathbf{g}
+    \qquad
+    \begin{array}{r@{\,}l}
+        \Delta\mathbf{x}
+        &\equiv
+        \mathbf{x} - \mathbf{x}_0
+        \\
+        \Delta\mathbf{g}
+        &\equiv
+        \mathbf{g} - \mathbf{g}_0
+    \end{array}
+\]
+This can be used to determine an approximation
+\(
+    \tilde{\mathbf{H}}
+    \approx
+    \mathbf{H}
+\)
+to the Hessian at
+\(
+    \mathbf{x}
+\)
+using the Hessian at the other point.
+Namely, we require the approximation to satisfy
+\[
+    \tilde{\mathbf{H}}
+    \Delta\mathbf{x}
+    \overset{!}{=}
+    \Delta\mathbf{g}
+    \qquad
+    \tilde{\mathbf{H}}
+    =
+    \mathbf{H}_0
+    +
+    \Delta\tilde{\mathbf{H}}
+\]
+which is known as the {\itshape quasi-Newton condition}.
+If the dimension is \(d\), then we have \(d\) linear equations and \(d^2\)
+elements in the correction matrix, so this equation is underdetermined.
+One simple choice is a rank-1 approximation 
+\[
+    \Delta\tilde{\mathbf{H}}
+    =
+    \eta\,
+    \mathbf{e}
+    \mathbf{e}^\mathrm{t}
+\]
+
+\end{document}
