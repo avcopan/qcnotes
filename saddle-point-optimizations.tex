@@ -7,44 +7,44 @@
 \paragraph{Newton-Raphson step.}
 Quadratic expansion
 \[
-    E_*
-    \approx
     E
+    \approx
+    E_0
     +
-    \Delta\mathbf{x}_*^\mathrm{t}
-    \mathbf{g}
+    \Delta\mathbf{x}^\mathrm{t}
+    \mathbf{g}_0
     +
     \tfrac{1}{2}
-    \Delta\mathbf{x}_*^\mathrm{t}
-    \mathbf{H}
-    \Delta\mathbf{x}_*
+    \Delta\mathbf{x}^\mathrm{t}
+    \mathbf{H}_0
+    \Delta\mathbf{x}
     \qquad
-    \mathbf{x}_*
+    \Delta\mathbf{x}
     \equiv
     \mathbf{x}
-    +
-    \Delta\mathbf{x}_*
+    -
+    \mathbf{x}_0
 \]
 Linear gradient expansion
 \[
-    \mathbf{g}_*
-    =
     \mathbf{g}
+    =
+    \mathbf{g}_0
     +
     \mathbf{H}
-    \Delta\mathbf{x}_*
+    \Delta\mathbf{x}_0
 \]
 Setting the gradient at the next point to zero gives the Newton-Raphson step
 \[
-    \mathbf{g}_*
+    \mathbf{g}
     \overset{!}{=}
     \mathbf{0}
     \implies
-    \Delta\mathbf{x}_*
+    \Delta\mathbf{x}
     =
     -
-    \mathbf{H}^{-1}
-    \mathbf{g}
+    \mathbf{H}_0^{-1}
+    \mathbf{g}_0
 \]
 For a perfectly quadratic surface, the Hessian is constant and the
 Newton-Raphson step takes us directly to the stationary point.
@@ -53,7 +53,7 @@ iteratively until we are close enough to the stationary point that the region
 separating us from it is approximately quadratic.
 
 
-\paragraph{Quasi-Newton condition.}
+\paragraph{The secant condition.}
 For points
 \(
     \mathbf{x}
@@ -73,27 +73,22 @@ between them is described by the following.
     \approx
     \Delta\mathbf{g}
     \qquad
-    \begin{array}{r@{\,}l}
-        \Delta\mathbf{x}
-        &\equiv
-        \mathbf{x} - \mathbf{x}_0
-        \\
-        \Delta\mathbf{g}
-        &\equiv
-        \mathbf{g} - \mathbf{g}_0
-    \end{array}
+    \Delta\mathbf{g}
+    \equiv
+    \mathbf{g} - \mathbf{g}_0
 \]
 This can be used to determine an approximation
 \(
     \tilde{\mathbf{H}}
-    \approx
-    \mathbf{H}
 \)
 to the Hessian at
 \(
     \mathbf{x}
 \)
-using the Hessian at the other point.
+using the Hessian at
+\(
+    \mathbf{x}_0
+\).
 Namely, we require the approximation to satisfy
 \[
     \tilde{\mathbf{H}}
@@ -107,10 +102,15 @@ Namely, we require the approximation to satisfy
     +
     \Delta\tilde{\mathbf{H}}
 \]
-which is known as the {\itshape quasi-Newton condition}.
+which is known as the {\itshape quasi-Newton condition}, or alternatively the
+{\itshape secant condition}.
 If the dimension is \(d\), then we have \(d\) linear equations and \(d^2\)
-elements in the correction matrix, so this equation is underdetermined.
-One simple choice is a rank-1 approximation 
+undetermined matrix elements (or rather \(d(d+1)/2\) matrix elements, by
+symmetry), so the system is underdetermined -- we have an infinite number of
+solutions.
+
+The simplest way forward is to assume \(\Delta\tilde{\mathbf{H}}\) has rank 1,
+which for a symmetric matrix implies that it has the form
 \[
     \Delta\tilde{\mathbf{H}}
     =
@@ -118,5 +118,176 @@ One simple choice is a rank-1 approximation
     \mathbf{e}
     \mathbf{e}^\mathrm{t}
 \]
+where \(\eta\) is a scalar and \(\mathbf{e}\) is a unit vector.
+This is the {\itshape symmetric rank-1} (SR1) approximation.
+Substituting this into the secant condition, we find
+\[
+    \mathbf{e}
+    =
+    \frac{%
+        \Delta\mathbf{g}
+        -
+        \mathbf{H}_0
+        \Delta\mathbf{x}
+    }{%
+        \|
+        \Delta\mathbf{g}
+        -
+        \mathbf{H}_0
+        \Delta\mathbf{x}
+        \|
+    }
+    \qquad
+    \eta
+    =
+    \frac{%
+        \mathbf{e}\cdot
+        (
+            \Delta\mathbf{g}
+            -
+            \mathbf{H}_0
+            \Delta\mathbf{x}
+        )
+    }{%
+        \mathbf{e}\cdot
+        \Delta\mathbf{x}
+    }
+    =
+    \frac{%
+        (
+            \Delta\mathbf{g}
+            -
+            \mathbf{H}_0
+            \Delta\mathbf{x}
+        )^2
+    }{%
+        (
+            \Delta\mathbf{g}
+            -
+            \mathbf{H}_0
+            \Delta\mathbf{x}
+        )\cdot
+        \Delta\mathbf{x}
+    }
+\]
+which allows us to simplify the SR1 matrix update.
+\[
+    \Delta\tilde{\mathbf{H}}_{\mathrm{SR1}}
+    \equiv
+    \frac{%
+        (
+            \Delta\mathbf{g}
+            -
+            \mathbf{H}_0
+            \Delta\mathbf{x}
+        )
+        (
+            \Delta\mathbf{g}
+            -
+            \mathbf{H}_0
+            \Delta\mathbf{x}
+        )^\mathrm{t}
+    }{%
+        (
+            \Delta\mathbf{g}
+            -
+            \mathbf{H}_0
+            \Delta\mathbf{x}
+        )\cdot
+        \Delta\mathbf{x}
+    }
+\]
+This provides a scheme for updating the Hessian using the change in the first
+derivative as we move across the potential surface.
+If we take several steps in a small, locally quadratic region of the surface,
+this approximation will improve with each step, and eventually we will have
+quite a good approximation to \(\mathbf{H}\).
+We can determine other approximations by assuming that the Hessian correction
+has rank 2, which can be used to derive the {\itshape
+Broyden-Fletcher-Goldfarb-Shanno} (BFGS) and {\itshape Davidon-Fletcher-Powell}
+(DFP) Hessian updates.
+
+Combining secant updating with Newton-Raphson optimization leads to the
+{\itshape quasi-Newton optimization algorithms}, which have the following form.
+\begin{enumerate}
+    \item
+        Evaluate the gradient \(\mathbf{g}_0\) at the starting point
+        \(\mathbf{x}_0\) and either evaluate the Hessian or use an
+        approximation.
+        Setting
+        \(
+            \tilde{\mathbf{H}}_0
+            =
+            \tfrac{\|\mathbf{g}_0\|}{s_0}
+            \mathbf{1}
+        \)
+        will yield a gradient descent of length \(s_0\) for the initial step.
+    \item
+        \label{item:loop-step}
+        Take a Newton-Raphson step.
+        \[
+            \mathbf{x}
+            =
+            \mathbf{x}_0
+            +
+            \Delta\mathbf{x}
+            \qquad
+            \Delta\mathbf{x}
+            =
+            -
+            \mathbf{H}_0^{-1}
+            \mathbf{g}_0
+        \]
+    \item
+        Evaluate the gradient \(\mathbf{g}\) at the new point.
+        If \(\max(\mathbf{g})<\mathrm{tol}\), quit.
+        We have converged.
+    \item
+        Otherwise, update the Hessian using a secant method like SR1.
+        \[
+            \tilde{\mathbf{H}}
+            =
+            \tilde{\mathbf{H}}_0
+            +
+            \Delta\tilde{\mathbf{H}}_\mathrm{SR1}
+            \qquad
+            \Delta\tilde{\mathbf{H}}_\mathrm{SR1}
+            =
+            \frac{%
+                (
+                    \Delta\mathbf{g}
+                    -
+                    \mathbf{H}_0
+                    \Delta\mathbf{x}
+                )
+                (
+                    \Delta\mathbf{g}
+                    -
+                    \mathbf{H}_0
+                    \Delta\mathbf{x}
+                )^\mathrm{t}
+            }{%
+                (
+                    \Delta\mathbf{g}
+                    -
+                    \mathbf{H}_0
+                    \Delta\mathbf{x}
+                )\cdot
+                \Delta\mathbf{x}
+            }
+        \]
+    \item
+        Set
+        \(
+            \mathbf{x}_0\leftarrow \mathbf{x},
+            \mathbf{g}_0\leftarrow \mathbf{g},
+        \)
+        and
+        \(
+            \mathbf{H}_0\leftarrow \mathbf{H}
+        \)
+        and return to step~\ref{item:loop-step}.
+\end{enumerate}
+
 
 \end{document}
