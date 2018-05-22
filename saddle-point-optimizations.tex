@@ -1,6 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[cm]{fullpage}
 \usepackage{amsmath}
+\usepackage{graphicx}
 
 \begin{document}
 
@@ -32,7 +33,7 @@ Linear gradient expansion
     \mathbf{g}_0
     +
     \mathbf{H}
-    \Delta\mathbf{x}_0
+    \Delta\mathbf{x}
 \]
 Setting the gradient at the next point to zero gives the Newton-Raphson step
 \[
@@ -287,6 +288,129 @@ Combining secant updating with Newton-Raphson optimization leads to the
             \mathbf{H}_0\leftarrow \mathbf{H}
         \)
         and return to step~\ref{item:loop-step}.
+\end{enumerate}
+
+
+\section*{Rational function optimization}
+
+\noindent
+Goal: Step to a position on the reaction path in the uphill direction
+\[
+    f
+    \approx
+    f_0
+    +
+    \Delta\mathbf{x}^\mathrm{t}
+    \mathbf{g}_0
+    +
+    \tfrac{1}{2}
+    \Delta\mathbf{x}^\mathrm{t}
+    \mathbf{H}_0
+    \Delta\mathbf{x}
+\]
+
+\noindent
+Look for extrema subject to the constraint of a fixed step size:
+\[
+    \|\Delta\mathbf{x}\|
+    \overset{!}{=}
+    s
+\]
+This constraint defines an (\(n-1\))-dimensional surface.
+
+For the two-dimensional case, this defines a circle.
+Within a locally quadratic (bowl- or saddle-shaped) region, this circle will
+have a pair of global maxima and minima 
+(barring the case of a circularly symmetric potential)
+\begin{center}
+    \includegraphics[width=0.8\linewidth]{figs/potential03.png}
+\end{center}
+and it may have up to one additional pair of local maxima and minima.
+\begin{center}
+    \includegraphics[width=0.8\linewidth]{figs/potential04.png}
+\end{center}
+Note that global minimum points downhill toward the bottom of the well, whereas
+the local minimum points uphill toward the valley ridge.
+
+\noindent
+Lagrangian:
+\[
+    \mathcal{L}(\mathbf{x}, \lambda)
+    =
+    f_0
+    +
+    \Delta\mathbf{x}^\mathrm{t}
+    \mathbf{g}_0
+    +
+    \tfrac{1}{2}
+    \Delta\mathbf{x}^\mathrm{t}
+    \mathbf{H}_0
+    \Delta\mathbf{x}
+    -
+    \tfrac{\lambda}{2}
+    (
+        \Delta\mathbf{x}\cdot\Delta\mathbf{x}
+        -
+        s^2
+    )
+\]
+
+\noindent
+Setting the gradient of \(\mathbf{x}\) to zero gives a modified Newton-Raphson
+step
+\[
+    \Delta\mathbf{x}
+    \overset{!}{=}
+    -
+    (\mathbf{H}_0 - \lambda)^{-1}
+    \mathbf{g}_0
+\]
+
+\noindent
+Substituting this into the derivative of \(\lambda\) gives the following
+\[
+    s^2
+    \overset{!}{=}
+    \Delta\mathbf{x}\cdot\Delta\mathbf{x}
+    =
+    \mathrm{g}_0^\mathrm{t}
+    (\mathbf{H}_0 - \lambda)^{-2}
+    \mathrm{g}_0
+\]
+This algebraic equation determines the value of \(\lambda\) for a given value of
+\(s\).
+To understand it, expand it in the Hessian eigenbasis.
+\[
+    s^2
+    =
+    \sum_{i=1}^n
+    \frac{g_{0,i}^2}{(h_{0,i} - \lambda)^2}
+\]
+\begin{enumerate}
+    \item
+        Right-hand side is positive for all \(\lambda\) and blows up to
+        \(+\infty\) whenever \(\lambda\approx h_i\).
+        Between the volcanoes we will have local minima.
+    \item
+        Thus, we can see that as we increase \(s^2\) we will have first
+        \begin{enumerate}
+            \item
+                Two solutions at \(\lambda\rightarrow\pm\infty\) for
+                \(s^2\rightarrow0\).
+            \item
+                Two solutions at \(\lambda<h_1\) and \(\lambda>h_n\) for small
+                values of \(s^2\).
+            \item
+                Three solutions at \(\lambda<h_1\), \(h_k<\lambda<h_{k+1}\), and
+                \(\lambda>h_n\) where we hit the first local minimum in \(s^2\).
+            \item
+                As \(s^2\) increases, the middle solution will split into two
+                solutions between \(h_k<\lambda<h_{k+1}\) on either side of the
+                well.
+            \item
+                Increasing numbers of solutions as we pass through other local
+                minima.
+        \end{enumerate}
 \end{enumerate}
 
 
